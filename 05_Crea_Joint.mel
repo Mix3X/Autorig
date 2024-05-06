@@ -1,0 +1,374 @@
+
+///////////////////////////////////
+////JOINT CREATION
+///////////////////////////////////
+
+// List of locator names
+string $locatorList[] = {"loc_right_thumb_3", "loc_right_thumb_2", "loc_right_thumb_1", "loc_right_index_3", "loc_right_index_2", "loc_right_index_1", "loc_right_middle_3", "loc_right_middle_2", "loc_right_middle_1", "loc_right_ring_3", "loc_right_ring_2", "loc_right_ring_1", "loc_right_pinkie_3", "loc_right_pinkie_2", "loc_right_pinkie_1", "loc_right_hand", "loc_right_forearm", "loc_right_shoulder", "loc_left_thumb_3", "loc_left_thumb_2", "loc_left_thumb_1", "loc_left_index_3", "loc_left_index_2", "loc_left_index_1", "loc_left_middle_3", "loc_left_middle_2", "loc_left_middle_1", "loc_left_ring_3", "loc_left_ring_2", "loc_left_ring_1", "loc_left_pinkie_3", "loc_left_pinkie_2", "loc_left_pinkie_1", "loc_left_hand", "loc_left_forearm", "loc_left_shoulder", "loc_Spine_4", "loc_Spine_3", "loc_Spine_2", "loc_Spine_1", "loc_neck", "loc_head", "loc_right_end", "loc_right_toes", "loc_right_foot", "loc_right_leg", "loc_right_thig", "loc_left_end", "loc_left_toes", "loc_left_foot", "loc_left_leg", "loc_left_thig", "loc_Hips", "loc_clavicle_right", "loc_clavicle_left", "loc_pec_right", "loc_pec_left" }; 
+// Loop through each locator
+
+//select -cl  ;
+
+for ($locatorName in $locatorList) {
+    // Check if the locator exists
+	
+    if (`objExists $locatorName`) {
+        // Get the position of the locator
+        float $locatorPos[] = `xform -q -t $locatorName`;
+
+        // Create a joint at the locator's position
+		string $jointName = ("joint_" + stringRemovePrefix( $locatorName, "loc_" ) );
+		
+        joint -p $locatorPos[0] $locatorPos[1] $locatorPos[2] -rad 4 -n $jointName;
+		select -cl  ;
+
+        // Print a message to confirm
+        print ("Joint created at the position of " + $locatorName + "\n");
+    } else {
+        // Print an error message if the locator doesn't exist
+        warning ("Locator " + $locatorName + " not found.\n");
+    }
+}
+
+
+///////////////////////////////////
+////IK _JOINT CREATION
+///////////////////////////////////
+
+// List of locator names
+string $locatorList[] = {"loc_right_hand", "loc_right_forearm", "loc_right_shoulder", "loc_left_hand", "loc_left_forearm", "loc_left_shoulder", "loc_right_foot", "loc_right_leg", "loc_right_thig", "loc_left_foot", "loc_left_leg", "loc_left_thig", "loc_right_end", "loc_right_toes","loc_left_end", "loc_left_toes"}; 
+// Loop through each locator
+select -cl  ;
+for ($locatorName in $locatorList) {
+    // Check if the locator exists
+    if (`objExists $locatorName`) {
+        // Get the position of the locator
+        float $locatorPos[] = `xform -q -t $locatorName`;
+
+        // Create a joint at the locator's position
+		string $jointName = ("joint_" + stringRemovePrefix( $locatorName, "loc_" ) + "_IK" );
+		
+        joint -p $locatorPos[0] $locatorPos[1] $locatorPos[2] -rad 4 -n $jointName;
+		select -cl  ;
+
+        // Print a message to confirm
+        print ("Joint created at the position of " + $locatorName + "\n");
+    } else {
+        // Print an error message if the locator doesn't exist
+        warning ("Locator " + $locatorName + " not found.\n");
+    }
+}
+
+
+///////////////////////////////////
+////FK _JOINT CREATION
+///////////////////////////////////
+
+// List of locator names
+string $locatorList[] = {"loc_right_hand", "loc_right_forearm", "loc_right_shoulder", "loc_left_hand", "loc_left_forearm", "loc_left_shoulder", "loc_right_foot", "loc_right_leg", "loc_right_thig", "loc_right_end", "loc_right_toes", "loc_left_foot","loc_left_end", "loc_left_toes", "loc_left_leg", "loc_left_thig"}; 
+// Loop through each locator
+select -cl  ;
+for ($locatorName in $locatorList) {
+    // Check if the locator exists
+    if (`objExists $locatorName`) {
+        // Get the position of the locator
+        float $locatorPos[] = `xform -q -t $locatorName`;
+
+        // Create a joint at the locator's position
+		string $jointName = ("joint_" + stringRemovePrefix( $locatorName, "loc_" ) + "_FK" );
+		
+        joint -p $locatorPos[0] $locatorPos[1] $locatorPos[2] -rad 4 -n $jointName;
+		select -cl  ;
+
+        // Print a message to confirm
+        print ("Joint created at the position of " + $locatorName + "\n");
+    } else {
+        // Print an error message if the locator doesn't exist
+        warning ("Locator " + $locatorName + " not found.\n");
+    }
+}
+
+
+setAttr "joint_right_pinkie_3.radius" 1;
+setAttr "joint_right_hand.radius" 1;
+setAttr "joint_right_thumb_1.radius" 1;
+setAttr "joint_right_thumb_2.radius" 1;
+setAttr "joint_right_thumb_3.radius" 1;
+setAttr "joint_right_index_1.radius" 1;
+setAttr "joint_right_index_2.radius" 1;
+setAttr "joint_right_index_3.radius" 1;
+setAttr "joint_right_middle_1.radius" 1;
+setAttr "joint_right_middle_2.radius" 1;
+setAttr "joint_right_middle_3.radius" 1;
+setAttr "joint_right_ring_1.radius" 1;
+setAttr "joint_right_ring_2.radius" 1;
+setAttr "joint_right_ring_3.radius" 1;
+setAttr "joint_right_pinkie_1.radius" 1;
+setAttr "joint_right_pinkie_2.radius" 1;
+
+
+setAttr "joint_left_pinkie_3.radius" 1;
+setAttr "joint_left_hand.radius" 1;
+setAttr "joint_left_thumb_1.radius" 1;
+setAttr "joint_left_thumb_2.radius" 1;
+setAttr "joint_left_thumb_3.radius" 1;
+setAttr "joint_left_index_1.radius" 1;
+setAttr "joint_left_index_2.radius" 1;
+setAttr "joint_left_index_3.radius" 1;
+setAttr "joint_left_middle_1.radius" 1;
+setAttr "joint_left_middle_2.radius" 1;
+setAttr "joint_left_middle_3.radius" 1;
+setAttr "joint_left_ring_1.radius" 1;
+setAttr "joint_left_ring_2.radius" 1;
+setAttr "joint_left_ring_3.radius" 1;
+setAttr "joint_left_pinkie_1.radius" 1;
+setAttr "joint_left_pinkie_2.radius" 1;
+
+
+///////////////////////////////////
+////JOINT PARENTING
+///////////////////////////////////
+
+parent joint_right_thumb_3 joint_right_thumb_2 ;
+parent joint_right_thumb_2 joint_right_thumb_1 ;
+
+parent joint_right_index_3 joint_right_index_2 ;
+parent joint_right_index_2 joint_right_index_1 ;
+
+parent joint_right_middle_3 joint_right_middle_2 ;
+parent joint_right_middle_2 joint_right_middle_1 ;
+
+parent joint_right_ring_3 joint_right_ring_2 ;
+parent joint_right_ring_2 joint_right_ring_1 ;
+
+parent joint_right_pinkie_3 joint_right_pinkie_2 ;
+parent joint_right_pinkie_2 joint_right_pinkie_1 ;
+
+parent joint_right_thumb_1 joint_right_hand ;
+parent joint_right_index_1 joint_right_hand ;
+parent joint_right_middle_1 joint_right_hand ;
+parent joint_right_ring_1 joint_right_hand ;
+parent joint_right_pinkie_1 joint_right_hand ;
+
+parent joint_right_hand joint_right_forearm ;
+
+parent joint_right_forearm joint_right_shoulder ;
+
+parent joint_right_hand_IK joint_right_forearm_IK ;
+
+parent joint_right_forearm_IK joint_right_shoulder_IK ;
+
+parent joint_right_hand_FK joint_right_forearm_FK ;
+
+parent joint_right_forearm_FK joint_right_shoulder_FK ;
+
+/////////////
+
+parent joint_left_thumb_3 joint_left_thumb_2 ;
+parent joint_left_thumb_2 joint_left_thumb_1 ;
+
+parent joint_left_index_3 joint_left_index_2 ;
+parent joint_left_index_2 joint_left_index_1 ;
+
+parent joint_left_middle_3 joint_left_middle_2 ;
+parent joint_left_middle_2 joint_left_middle_1 ;
+
+parent joint_left_ring_3 joint_left_ring_2 ;
+parent joint_left_ring_2 joint_left_ring_1 ;
+
+parent joint_left_pinkie_3 joint_left_pinkie_2 ;
+parent joint_left_pinkie_2 joint_left_pinkie_1 ;
+
+parent joint_left_thumb_1 joint_left_hand ;
+parent joint_left_index_1 joint_left_hand ;
+parent joint_left_middle_1 joint_left_hand ;
+parent joint_left_ring_1 joint_left_hand ;
+parent joint_left_pinkie_1 joint_left_hand ;
+
+parent joint_left_hand joint_left_forearm ;
+
+parent joint_left_forearm joint_left_shoulder ;
+
+parent joint_left_hand_IK joint_left_forearm_IK ;
+
+parent joint_left_forearm_IK joint_left_shoulder_IK ;
+
+parent joint_left_hand_FK joint_left_forearm_FK ;
+
+parent joint_left_forearm_FK joint_left_shoulder_FK ;
+
+/////////////////
+
+parent joint_head joint_neck ;
+
+parent joint_neck joint_Spine_4 ;
+
+parent joint_Spine_4 joint_Spine_3 ;
+
+parent joint_Spine_3 joint_Spine_2 ;
+
+parent joint_Spine_2 joint_Spine_1 ;
+
+parent joint_Spine_1 joint_Hips ;
+
+parent joint_pec_left joint_Spine_3 ;
+
+parent joint_pec_right joint_Spine_3 ;
+
+parent joint_clavicle_left joint_Spine_3 ;
+
+parent joint_clavicle_right joint_Spine_3 ;
+
+
+///////////////////
+
+parent joint_right_end joint_right_toes ;
+
+parent joint_right_toes joint_right_foot ;
+
+parent joint_right_foot joint_right_leg ;
+
+parent joint_right_leg joint_right_thig ;
+
+parent joint_right_foot_IK joint_right_leg_IK ;
+
+parent joint_right_leg_IK joint_right_thig_IK ;
+
+parent joint_right_foot_FK joint_right_leg_FK ;
+
+parent joint_right_leg_FK joint_right_thig_FK ;
+/////////////////////
+
+parent joint_left_end joint_left_toes ;
+
+parent joint_left_toes joint_left_foot ;
+
+parent joint_left_foot joint_left_leg ;
+
+parent joint_left_leg joint_left_thig ;
+
+parent joint_left_foot_IK joint_left_leg_IK ;
+
+parent joint_left_leg_IK joint_left_thig_IK ;
+
+parent joint_left_foot_FK joint_left_leg_FK ;
+
+parent joint_left_leg_FK joint_left_thig_FK ;
+
+
+parent joint_left_shoulder joint_clavicle_left ;
+
+parent joint_right_shoulder joint_clavicle_right ;
+
+parent joint_right_shoulder_IK joint_clavicle_right ;
+
+parent joint_right_shoulder_FK joint_clavicle_right ;
+
+parent joint_left_shoulder_IK joint_clavicle_left ;
+
+parent joint_left_shoulder_FK joint_clavicle_left ;
+
+
+parent joint_right_end_IK joint_right_toes_IK ;
+parent joint_right_toes_IK joint_right_foot_IK ;
+parent joint_left_end_IK joint_left_toes_IK ;
+parent joint_left_toes_IK joint_left_foot_IK ;
+parent joint_right_end_FK joint_right_toes_FK ;
+parent joint_right_toes_FK joint_right_foot_FK ;
+parent joint_left_end_FK joint_left_toes_FK ;
+parent joint_left_toes_FK joint_left_foot_FK ;
+parent joint_right_thig_IK joint_Hips ;
+parent joint_left_thig_IK joint_Hips ;
+parent joint_right_thig_FK joint_Hips ;
+parent joint_left_thig_FK joint_Hips ;
+
+parent joint_left_thig joint_Hips ;
+
+parent joint_right_thig joint_Hips ;
+//////////
+//ORIENT JOINT
+/////////
+
+select -r joint_Hips joint_Spine_1 joint_Spine_2 joint_Spine_3 joint_Spine_4 joint_neck joint_head ;
+joint -e  -oj yxz -secondaryAxisOrient xup -ch -zso;
+
+select -r  ;
+joint -e  -oj xyz -secondaryAxisOrient yup -zso;
+
+select -r joint_head ;
+joint -e  -oj none -ch -zso;
+
+select -r joint_clavicle_left joint_left_shoulder joint_left_forearm joint_left_hand ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_left_hand ;
+joint -e  -oj none -ch -zso;
+
+select -r joint_left_thumb_1 joint_left_thumb_2 joint_left_thumb_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_left_index_1 joint_left_index_2 joint_left_index_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_left_middle_1 joint_left_middle_2 joint_left_middle_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_left_ring_1 joint_left_ring_2 joint_left_ring_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_left_pinkie_1 joint_left_pinkie_2 joint_left_pinkie_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_left_pinkie_3 ;
+select -add joint_left_ring_3 ;
+select -add joint_left_middle_3 ;
+select -add joint_left_index_3 ;
+
+joint -e  -oj none -ch -zso;
+select -cl  ;
+
+select -r joint_clavicle_right joint_right_shoulder joint_right_forearm joint_right_hand ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_right_hand ;
+joint -e  -oj none -ch -zso;
+
+select -r joint_right_thumb_1 joint_right_thumb_2 joint_right_thumb_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_right_index_1 joint_right_index_2 joint_right_index_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_right_middle_1 joint_right_middle_2 joint_right_middle_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_right_ring_1 joint_right_ring_2 joint_right_ring_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_right_pinkie_1 joint_right_pinkie_2 joint_right_pinkie_3 ;
+joint -e  -oj xyz -secondaryAxisOrient yup -ch -zso;
+
+select -r joint_right_pinkie_3 ;
+select -add joint_right_ring_3 ;
+select -add joint_right_middle_3 ;
+select -add joint_right_index_3 ;
+
+joint -e  -oj none -ch -zso;
+select -cl  ;
+
+select -r joint_right_thig_IK joint_right_leg_IK joint_right_foot_IK joint_right_toes_IK joint_right_end_IK joint_left_thig_IK joint_left_leg_IK joint_left_foot_IK joint_left_toes_IK joint_left_end_IK joint_right_thig_FK joint_right_leg_FK joint_right_foot_FK joint_right_toes_FK joint_right_end_FK joint_left_thig_FK joint_left_leg_FK joint_left_foot_FK joint_left_toes_FK joint_left_end_FK joint_left_thig joint_left_leg joint_left_foot joint_left_toes joint_left_end joint_right_thig joint_right_leg joint_right_foot joint_right_toes joint_right_end ;
+joint -e  -oj yxz -secondaryAxisOrient xup -ch -zso;
+
+select -cl  ;
+select -r joint_right_end ;
+select -add joint_left_end ;
+select -add joint_left_end_FK ;
+select -add joint_right_end_FK ;
+select -add joint_left_end_IK ;
+select -add joint_right_end_IK ;
+joint -e  -oj none -ch -zso;
+
+
+evalDeferred("source \"06_left_thumb_1\"");
+
+

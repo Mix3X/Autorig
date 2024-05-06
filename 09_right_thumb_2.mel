@@ -1,0 +1,54 @@
+select -cl  ;
+select -r joint_right_thumb_2;
+
+ToggleLocalRotationAxes;
+
+viewFit;
+setToolTo Rotate;
+manipRotateContext -e -mode 0 Rotate;
+
+hilite -r joint_right_thumb_2 ;
+select -r joint_right_thumb_2.rotateAxis ;
+
+
+
+
+
+// Create a window with a button
+string $window = `window -title "joint_right_thumb_2 Orientation" -widthHeight 300 100`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Check right_thumb_2 Orientation";
+text -label "Then click continue ";
+text -label "";
+
+button -label "Continue to Controller creation" -command "deferredright_thumb(); deleteUI $window;";
+
+// Show the window
+showWindow $window;
+
+// Function to execute the Symetrize leg locator and create spine to head locator
+global proc deferredright_thumb_1() {
+select -cl  ;
+select -r joint_right_thumb_3 ;
+joint -e  -oj none -ch -zso;
+select -cl  ;
+select -r Locator_grp ;
+fitPanel -selected;
+select -cl  ;
+select -r joint_right_thumb_2;
+select -tgl joint_right_thumb_1;
+select -tgl joint_left_thumb_1;
+select -tgl joint_left_thumb_2;
+ToggleLocalRotationAxes;
+select -cl  ;
+		eval( "source \"10_Crea_Ctrl\"" );
+
+}
+
+// Deferred function to be called when the button is pressed
+global proc deferredright_thumb() {
+    // Execute the main code in the next idle event
+    evalDeferred("deferredright_thumb_1");
+}

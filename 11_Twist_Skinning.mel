@@ -1,0 +1,1645 @@
+////// IK FK Visibility 
+
+addAttr -longName IK_FK_Arms -attributeType enum -enumName "IK:FK" ikFkSwitch_Ctrl;
+setAttr -k on ikFkSwitch_Ctrl.IK_FK_Arms;
+
+
+addAttr -longName IK_FK_Legs -attributeType enum -enumName "IK:FK" ikFkSwitch_Ctrl;
+setAttr -k on ikFkSwitch_Ctrl.IK_FK_Legs;
+
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_IK_arm";
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_IK_leg";
+setAttr "reverse_for_IK_arm.operation" 2;
+setAttr "reverse_for_IK_leg.operation" 2;
+setAttr "reverse_for_IK_arm.input2D[0].input2Dx" 1;
+setAttr "reverse_for_IK_arm.input2D[1].input2Dx" 1;
+setAttr "reverse_for_IK_arm.input2D[1].input2Dy" 1;
+setAttr "reverse_for_IK_leg.input2D[0].input2Dx" 1;
+setAttr "reverse_for_IK_leg.input2D[1].input2Dx" 1;
+setAttr "reverse_for_IK_leg.input2D[1].input2Dy" 1;
+
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms reverse_for_IK_arm.input2D[0].input2Dy;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_IK_leg.input2D[0].input2Dy;
+
+connectAttr -f reverse_for_IK_arm.output2Dy left_Wrist_IK_Ctrl.visibility;
+connectAttr -f reverse_for_IK_arm.output2Dy right_elbow_IK_Ctrl.visibility;
+connectAttr -f reverse_for_IK_arm.output2Dy left_elbow_IK_Ctrl.visibility;
+connectAttr -f reverse_for_IK_arm.output2Dy right_Wrist_IK_Ctrl.visibility;
+
+connectAttr -f reverse_for_IK_arm.output2Dy joint_left_shoulder_IK.visibility;
+connectAttr -f reverse_for_IK_arm.output2Dy joint_left_forearm_IK.visibility;
+connectAttr -f reverse_for_IK_arm.output2Dy joint_left_hand_IK.visibility;
+
+connectAttr -f reverse_for_IK_arm.output2Dy joint_right_shoulder_IK.visibility;
+connectAttr -f reverse_for_IK_arm.output2Dy joint_right_forearm_IK.visibility;
+connectAttr -f reverse_for_IK_arm.output2Dy joint_right_hand_IK.visibility;
+
+
+connectAttr -f reverse_for_IK_leg.output2Dy right_ankle_IK_Ctrl.visibility;
+connectAttr -f reverse_for_IK_leg.output2Dy left_ankle_IK_Ctrl.visibility;
+connectAttr -f reverse_for_IK_leg.output2Dy right_knee_IK_Ctrl.visibility;
+connectAttr -f reverse_for_IK_leg.output2Dy left_knee_IK_Ctrl.visibility;
+
+connectAttr -f reverse_for_IK_leg.output2Dy joint_right_thig_IK.visibility;
+connectAttr -f reverse_for_IK_leg.output2Dy joint_right_leg_IK.visibility;
+connectAttr -f reverse_for_IK_leg.output2Dy joint_right_foot_IK.visibility;
+
+connectAttr -f reverse_for_IK_leg.output2Dy joint_left_thig_IK.visibility;
+connectAttr -f reverse_for_IK_leg.output2Dy joint_left_leg_IK.visibility;
+connectAttr -f reverse_for_IK_leg.output2Dy joint_left_foot_IK.visibility;
+
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms shoulder_right_FK_Ctrl.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms shoulder_left_FK_Ctrl.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms forearm_left_FK_Ctrl.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms forearm_right_FK_Ctrl.visibility;
+
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms joint_left_shoulder_FK.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms joint_left_forearm_FK.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms joint_left_hand_FK.visibility;
+
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms joint_right_shoulder_FK.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms joint_right_forearm_FK.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms joint_right_hand_FK.visibility;
+
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs left_thig_FK_Ctrl.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs right_thig_FK_Ctrl.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs left_leg_FK_Ctrl.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs right_leg_FK_Ctrl.visibility;
+
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs joint_right_thig_FK.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs joint_right_leg_FK.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs joint_right_foot_FK.visibility;
+
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs joint_left_thig_FK.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs joint_left_leg_FK.visibility;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs joint_left_foot_FK.visibility;
+
+/////// Parenting the  Ctrl
+
+parent left_leg_FK_Ctrl left_thig_FK_Ctrl ;
+
+parent right_leg_FK_Ctrl right_thig_FK_Ctrl ;
+
+parent spine_4_Ctrl spine_3_Ctrl ;
+parent spine_4_Ctrl spine_2_Ctrl ;
+parent spine_4_Ctrl spine_1_Ctrl ;
+parent spine_4_Ctrl spine_3_Ctrl ;
+parent spine_3_Ctrl spine_2_Ctrl ;
+parent spine_2_Ctrl spine_1_Ctrl ;
+parent spine_1_Ctrl hip_Ctrl ;
+parent right_thig_FK_Ctrl root_Ctrl ;
+parent left_thig_FK_Ctrl root_Ctrl ;
+parent forearm_left_FK_Ctrl shoulder_left_FK_Ctrl ;
+parent forearm_right_FK_Ctrl shoulder_right_FK_Ctrl ;
+
+
+
+parent left_pec_Ctrl spine_3_Ctrl ;
+parent right_pec_Ctrl spine_3_Ctrl ;
+parent left_clavicle_Ctrl spine_3_Ctrl ;
+parent right_clavicle_Ctrl spine_3_Ctrl ;
+parent head_Ctrl spine_4_Ctrl ;
+parent right_elbow_IK_Ctrl right_Wrist_IK_Ctrl ;
+//parent right_Wrist_IK_Ctrl right_clavicle_Ctrl ;
+//parent left_Wrist_IK_Ctrl left_clavicle_Ctrl ;
+parent left_elbow_IK_Ctrl left_Wrist_IK_Ctrl ;
+parent right_ankle_IK_Ctrl root_Ctrl ;
+parent right_knee_IK_Ctrl right_ankle_IK_Ctrl ;
+parent left_ankle_IK_Ctrl root_Ctrl ;
+parent left_knee_IK_Ctrl left_ankle_IK_Ctrl ;
+parent ikFkSwitch_Ctrl spine_3_Ctrl ;
+parent hip_Ctrl root_Ctrl ;
+parent shoulder_left_FK_Ctrl left_clavicle_Ctrl ;
+parent shoulder_right_FK_Ctrl right_clavicle_Ctrl ;
+
+
+
+parent left_feet_Ctrl left_leg_FK_Ctrl ;
+parent right_feet_Ctrl right_leg_FK_Ctrl ;
+
+parent left_thumb_3_Ctrl left_thumb_2_Ctrl ;
+parent left_thumb_2_Ctrl left_thumb_1_Ctrl ;
+parent left_index_3_Ctrl left_index_2_Ctrl ;
+parent left_index_2_Ctrl left_index_1_Ctrl ;
+parent left_middle_3_Ctrl left_middle_2_Ctrl ;
+parent left_middle_2_Ctrl left_middle_1_Ctrl ;
+parent left_ring_3_Ctrl left_ring_2_Ctrl ;
+parent left_ring_2_Ctrl left_ring_1_Ctrl ;
+parent left_pinkie_3_Ctrl left_pinkie_2_Ctrl ;
+parent left_pinkie_2_Ctrl left_pinkie_1_Ctrl ;
+parent right_thumb_3_Ctrl right_thumb_2_Ctrl ;
+parent right_thumb_2_Ctrl right_thumb_1_Ctrl ;
+parent right_index_3_Ctrl right_index_2_Ctrl ;
+parent right_index_2_Ctrl right_index_1_Ctrl ;
+parent right_middle_3_Ctrl right_middle_2_Ctrl ;
+parent right_middle_2_Ctrl right_middle_1_Ctrl ;
+parent right_ring_3_Ctrl right_ring_2_Ctrl ;
+parent right_ring_2_Ctrl right_ring_1_Ctrl ;
+parent right_pinkie_3_Ctrl right_pinkie_2_Ctrl ;
+parent right_pinkie_2_Ctrl right_pinkie_1_Ctrl ;
+
+
+
+parent left_thumb_1_Ctrl left_arm_constraint_loc ;
+parent left_index_1_Ctrl left_arm_constraint_loc ;
+parent left_middle_1_Ctrl left_arm_constraint_loc ;
+parent left_ring_1_Ctrl left_arm_constraint_loc ;
+parent left_pinkie_1_Ctrl left_arm_constraint_loc ;
+parent right_thumb_1_Ctrl right_arm_constraint_loc ;
+parent right_index_1_Ctrl right_arm_constraint_loc ;
+parent right_middle_1_Ctrl right_arm_constraint_loc ;
+parent right_ring_1_Ctrl right_arm_constraint_loc ;
+parent right_pinkie_1_Ctrl right_arm_constraint_loc ;
+
+parent right_hand_Ctrl joint_right_forearm ;
+parent left_hand_Ctrl joint_left_forearm ;
+
+select -r PV_right_elbow_IK_aim_loc ;
+select -add PV_left_elbow_IK_aim_loc ;
+select -add PV_left_leg_IK__aim_loc ;
+select -add PV_right_leg_IK__aim_loc ;
+doDelete;
+/////// Constraint Controller <-> joint_Hips
+select -r hip_Ctrl ;
+select -add joint_Hips ;
+parentConstraint -mo -weight 1;
+
+select -r spine_1_Ctrl ;
+select -add joint_Spine_1 ;
+parentConstraint -mo -weight 1;
+
+select -r spine_2_Ctrl ;
+select -add joint_Spine_2 ;
+parentConstraint -mo -weight 1;
+
+select -r spine_3_Ctrl ;
+select -add joint_Spine_3 ;
+parentConstraint -mo -weight 1;
+
+select -r spine_4_Ctrl ;
+select -add joint_Spine_4 ;
+parentConstraint -mo -weight 1;
+
+select -r head_Ctrl ;
+select -tgl joint_neck ;
+parentConstraint -mo -weight 1;
+
+select -r left_pec_Ctrl ;
+select -tgl joint_pec_left ;
+parentConstraint -mo -weight 1;
+
+select -r right_pec_Ctrl ;
+select -tgl joint_pec_right ;
+parentConstraint -mo -weight 1;
+
+select -r left_clavicle_Ctrl ;
+select -tgl joint_clavicle_left ;
+parentConstraint -mo -weight 1;
+
+select -r right_clavicle_Ctrl ;
+select -tgl joint_clavicle_right ;
+parentConstraint -mo -weight 1;
+
+select -r joint_right_hand;
+select -add right_arm_constraint_loc ;
+parentConstraint -mo -weight 1;
+
+select -r joint_left_hand ;
+select -add left_arm_constraint_loc ;
+parentConstraint -mo -weight 1;
+
+select -r shoulder_left_FK_Ctrl   ;
+select -tgl joint_left_shoulder ;
+parentConstraint -mo -weight 1;
+
+select -r forearm_left_FK_Ctrl ;
+select -tgl joint_left_forearm ;
+parentConstraint -mo -weight 1;
+
+select -r left_thumb_1_Ctrl  ;
+select -tgl joint_left_thumb_1 ;
+parentConstraint -mo -weight 1;
+
+select -r left_thumb_2_Ctrl  ;
+select -tgl joint_left_thumb_2 ;
+parentConstraint -mo -weight 1;
+
+select -r left_thumb_3_Ctrl ;
+select -tgl joint_left_thumb_3 ;
+parentConstraint -mo -weight 1;
+
+select -r left_index_1_Ctrl  ;
+select -tgl joint_left_index_1 ;
+parentConstraint -mo -weight 1;
+
+select -r left_index_2_Ctrl  ;
+select -tgl joint_left_index_2 ;
+parentConstraint -mo -weight 1;
+
+select -r left_index_3_Ctrl  ;
+select -tgl joint_left_index_3 ;
+parentConstraint -mo -weight 1;
+
+select -r left_middle_1_Ctrl ;
+select -tgl joint_left_middle_1 ;
+parentConstraint -mo -weight 1;
+
+select -r left_middle_2_Ctrl ;
+select -tgl joint_left_middle_2 ;
+parentConstraint -mo -weight 1;
+
+select -r left_middle_3_Ctrl ;
+select -tgl joint_left_middle_3 ;
+parentConstraint -mo -weight 1;
+
+select -r left_ring_1_Ctrl  ;
+select -tgl joint_left_ring_1 ;
+parentConstraint -mo -weight 1;
+
+select -r left_ring_2_Ctrl ;
+select -tgl joint_left_ring_2 ;
+parentConstraint -mo -weight 1;
+
+select -r left_ring_3_Ctrl ;
+select -tgl joint_left_ring_3 ;
+parentConstraint -mo -weight 1;
+
+select -r left_pinkie_1_Ctrl ;
+select -tgl joint_left_pinkie_1 ;
+parentConstraint -mo -weight 1;
+
+select -r left_pinkie_2_Ctrl ;
+select -tgl joint_left_pinkie_2 ;
+parentConstraint -mo -weight 1;
+
+select -r left_pinkie_3_Ctrl ;
+select -tgl joint_left_pinkie_3 ;
+parentConstraint -mo -weight 1;
+
+select -r right_thumb_1_Ctrl  ;
+select -tgl joint_right_thumb_1 ;
+parentConstraint -mo -weight 1;
+
+select -r right_thumb_2_Ctrl  ;
+select -tgl joint_right_thumb_2 ;
+parentConstraint -mo -weight 1;
+
+select -r right_thumb_3_Ctrl ;
+select -tgl joint_right_thumb_3 ;
+parentConstraint -mo -weight 1;
+
+select -r right_index_1_Ctrl  ;
+select -tgl joint_right_index_1 ;
+parentConstraint -mo -weight 1;
+
+select -r right_index_2_Ctrl  ;
+select -tgl joint_right_index_2 ;
+parentConstraint -mo -weight 1;
+
+select -r right_index_3_Ctrl  ;
+select -tgl joint_right_index_3 ;
+parentConstraint -mo -weight 1;
+
+select -r right_middle_1_Ctrl ;
+select -tgl joint_right_middle_1 ;
+parentConstraint -mo -weight 1;
+
+select -r right_middle_2_Ctrl ;
+select -tgl joint_right_middle_2 ;
+parentConstraint -mo -weight 1;
+
+select -r right_middle_3_Ctrl ;
+select -tgl joint_right_middle_3 ;
+parentConstraint -mo -weight 1;
+
+select -r right_ring_1_Ctrl  ;
+select -tgl joint_right_ring_1 ;
+parentConstraint -mo -weight 1;
+
+select -r right_ring_2_Ctrl ;
+select -tgl joint_right_ring_2 ;
+parentConstraint -mo -weight 1;
+
+select -r right_ring_3_Ctrl ;
+select -tgl joint_right_ring_3 ;
+parentConstraint -mo -weight 1;
+
+select -r right_pinkie_1_Ctrl ;
+select -tgl joint_right_pinkie_1 ;
+parentConstraint -mo -weight 1;
+
+select -r right_pinkie_2_Ctrl ;
+select -tgl joint_right_pinkie_2 ;
+parentConstraint -mo -weight 1;
+
+select -r right_pinkie_3_Ctrl ;
+select -tgl joint_right_pinkie_3 ;
+parentConstraint -mo -weight 1;
+
+select -r left_feet_Ctrl ;
+select -tgl joint_left_toes ;
+parentConstraint -mo -weight 1;
+
+select -r right_feet_Ctrl ;
+select -tgl joint_right_toes ;
+parentConstraint -mo -weight 1;
+
+select -r joint_left_thig_IK ;
+select -add joint_left_foot_IK ;
+ikHandle;
+rename "ikHandle1" "left_foot_Ik_Handle";
+
+select -r joint_right_thig_IK ;
+select -add joint_right_foot_IK ;
+ikHandle;
+rename "ikHandle1" "right_foot_Ik_Handle";
+
+select -r right_knee_IK_Ctrl ;
+select -add right_foot_Ik_Handle ;
+poleVectorConstraint -weight 1;
+
+select -r left_knee_IK_Ctrl ;
+select -add left_foot_Ik_Handle ;
+poleVectorConstraint -weight 1;
+
+select -r shoulder_left_FK_Ctrl ;
+select -tgl joint_left_shoulder_FK ;
+parentConstraint -mo -weight 1;
+
+select -r forearm_left_FK_Ctrl ;
+select -tgl joint_left_forearm_FK ;
+parentConstraint -mo -weight 1;
+
+select -r shoulder_right_FK_Ctrl ;
+select -tgl joint_right_shoulder_FK ;
+parentConstraint -mo -weight 1;
+
+select -r forearm_right_FK_Ctrl ;
+select -tgl joint_right_forearm_FK ;
+parentConstraint -mo -weight 1;
+
+
+select -r joint_left_shoulder_IK ;
+select -tgl joint_left_hand_IK ;
+ikHandle;
+rename "ikHandle1" "left_arm_Ik_Handle";
+
+select -r joint_right_shoulder_IK ;
+select -tgl joint_right_hand_IK ;
+ikHandle;
+rename "ikHandle1" "right_arm_Ik_Handle";
+
+select -r left_elbow_IK_Ctrl ;
+select -add left_arm_Ik_Handle ;
+poleVectorConstraint -weight 1;
+
+select -r right_elbow_IK_Ctrl ;
+select -add right_arm_Ik_Handle ;
+poleVectorConstraint -weight 1;
+
+parent left_arm_Ik_Handle left_Wrist_IK_Ctrl ;
+parent right_arm_Ik_Handle right_Wrist_IK_Ctrl ;
+
+select -r left_hand_Ctrl ;
+select -add joint_left_hand ;
+parentConstraint -mo -weight 1;
+
+select -r right_hand_Ctrl ;
+select -add joint_right_hand ;
+parentConstraint -mo -weight 1;
+
+select -cl ;
+select -r joint_left_foot_IK joint_left_toes_IK ;
+ikHandle;
+rename "ikHandle1" "left_foot_Ik_solver";
+
+select -cl ;
+select -r joint_right_foot_IK joint_right_toes_IK ;
+ikHandle;
+rename "ikHandle1" "right_foot_Ik_solver";
+
+select -r joint_right_forearm ;
+select -tgl right_elbow_IK_Ctrl ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -r joint_left_forearm ;
+select -tgl left_elbow_IK_Ctrl ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -r joint_left_leg ;
+select -tgl left_knee_IK_Ctrl ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -r joint_right_leg ;
+select -tgl right_knee_IK_Ctrl ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+parent right_foot_Ik_Handle right_ankle_IK_Ctrl ;
+parent left_foot_Ik_Handle left_ankle_IK_Ctrl ;
+parent left_foot_Ik_solver left_ankle_IK_Ctrl ;
+parent right_foot_Ik_solver right_ankle_IK_Ctrl ;
+
+spaceLocator -p 0 0 0;
+rename "locator1" "left_hand_constraint_loc";
+
+spaceLocator -p 0 0 0;
+rename "locator1" "right_hand_constraint_loc";
+
+select -r left_hand_constraint_loc ;
+select -tgl left_Wrist_IK_Ctrl ;
+MatchTranslation;
+
+select -r right_hand_constraint_loc ;
+select -tgl right_Wrist_IK_Ctrl ;
+MatchTranslation;
+
+parent left_hand_constraint_loc joint_left_forearm ;
+parent right_hand_constraint_loc joint_right_forearm ;
+
+select -r left_hand_constraint_loc ;
+select -add left_hand_Ctrl ;
+doCreatePointConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+pointConstraint -mo -weight 1;
+
+
+select -r right_hand_constraint_loc ;
+select -add right_hand_Ctrl ;
+doCreatePointConstraintArgList 1 { "1","0","0","0","0","0","0","1","","1" };
+pointConstraint -mo -weight 1;
+
+///// Blend IK Fk  left Arm
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_shoulder_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_shoulder_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_left_shoulder";
+setAttr "reverse_for_blend_left_shoulder.operation" 2;
+setAttr "reverse_for_blend_left_shoulder.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_left_shoulder.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_left_shoulder.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms reverse_for_blend_left_shoulder.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_left_shoulder";
+connectAttr -f reverse_for_blend_left_shoulder.output2Dy inv_reverse_for_blend_left_shoulder.input1X;setAttr "inv_reverse_for_blend_left_shoulder.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_left_shoulder.outputX left_shoulder_translate_blend.blender;
+
+connectAttr -f joint_left_shoulder_IK.translate left_shoulder_translate_blend.color1;
+connectAttr -f joint_left_shoulder_FK.translate left_shoulder_translate_blend.color2;
+connectAttr -f left_shoulder_translate_blend.output joint_left_shoulder.translate;
+
+connectAttr -f joint_left_shoulder_FK.rotate left_shoulder_rotate_blend.color2;
+connectAttr -f joint_left_shoulder_IK.rotate left_shoulder_rotate_blend.color1;
+connectAttr -f inv_reverse_for_blend_left_shoulder.outputX left_shoulder_rotate_blend.blender;
+connectAttr -f left_shoulder_rotate_blend.output joint_left_shoulder.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_forearm_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_forearm_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_left_forearm";
+setAttr "reverse_for_blend_left_forearm.operation" 2;
+setAttr "reverse_for_blend_left_forearm.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_left_forearm.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_left_forearm.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms reverse_for_blend_left_forearm.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_left_forearm";
+connectAttr -f reverse_for_blend_left_forearm.output2Dy inv_reverse_for_blend_left_forearm.input1X;setAttr "inv_reverse_for_blend_left_forearm.input2X" -1;
+
+connectAttr -f inv_reverse_for_blend_left_forearm.outputX left_forearm_rotate_blend.blender;
+connectAttr -f inv_reverse_for_blend_left_forearm.outputX left_forearm_translate_blend.blender;
+
+
+connectAttr -f joint_left_forearm_IK.translate left_forearm_translate_blend.color1;
+connectAttr -f joint_left_forearm_FK.translate left_forearm_translate_blend.color2;
+connectAttr -f left_forearm_translate_blend.output joint_left_forearm.translate;
+
+connectAttr -f joint_left_forearm_IK.rotate left_forearm_rotate_blend.color1;
+connectAttr -f joint_left_forearm_FK.rotate left_forearm_rotate_blend.color2;
+connectAttr -f left_forearm_rotate_blend.output joint_left_forearm.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_hand_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_hand_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_left_hand";
+setAttr "reverse_for_blend_left_hand.operation" 2;
+setAttr "reverse_for_blend_left_hand.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_left_hand.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_left_hand.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms reverse_for_blend_left_hand.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_left_hand";
+connectAttr -f reverse_for_blend_left_hand.output2Dy inv_reverse_for_blend_left_hand.input1X;setAttr "inv_reverse_for_blend_left_hand.input2X" -1;
+
+connectAttr -f inv_reverse_for_blend_left_hand.outputX left_hand_rotate_blend.blender;
+connectAttr -f inv_reverse_for_blend_left_hand.outputX left_hand_translate_blend.blender;
+
+
+connectAttr -f joint_left_hand_IK.translate left_hand_translate_blend.color1;
+connectAttr -f joint_left_hand_FK.translate left_hand_translate_blend.color2;
+connectAttr -f left_hand_translate_blend.output joint_left_hand.translate;
+
+connectAttr -f joint_left_hand_IK.rotate left_hand_rotate_blend.color1;
+connectAttr -f joint_left_hand_FK.rotate left_hand_rotate_blend.color2;
+connectAttr -f left_hand_rotate_blend.output joint_left_hand.rotate;
+
+disconnectAttr joint_left_forearm_parentConstraint1.constraintTranslateZ joint_left_forearm.translateZ;
+disconnectAttr joint_left_forearm_parentConstraint1.constraintTranslateX joint_left_forearm.translateX;
+disconnectAttr joint_left_forearm_parentConstraint1.constraintTranslateY joint_left_forearm.translateY;
+disconnectAttr joint_left_forearm_parentConstraint1.constraintRotateY joint_left_forearm.rotateY;
+disconnectAttr joint_left_forearm_parentConstraint1.constraintRotateZ joint_left_forearm.rotateZ;
+disconnectAttr joint_left_forearm_parentConstraint1.constraintRotateX joint_left_forearm.rotateX;
+disconnectAttr joint_left_shoulder_parentConstraint1.constraintRotateY joint_left_shoulder.rotateY;
+disconnectAttr joint_left_shoulder_parentConstraint1.constraintRotateZ joint_left_shoulder.rotateZ;
+disconnectAttr joint_left_shoulder_parentConstraint1.constraintRotateX joint_left_shoulder.rotateX;
+disconnectAttr joint_left_shoulder_parentConstraint1.constraintTranslateZ joint_left_shoulder.translateZ;
+disconnectAttr joint_left_shoulder_parentConstraint1.constraintTranslateX joint_left_shoulder.translateX;
+disconnectAttr joint_left_shoulder_parentConstraint1.constraintTranslateY joint_left_shoulder.translateY;
+
+///// Blend IK Fk  right Arm
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_shoulder_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_shoulder_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_right_shoulder";
+setAttr "reverse_for_blend_right_shoulder.operation" 2;
+setAttr "reverse_for_blend_right_shoulder.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_right_shoulder.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_right_shoulder.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms reverse_for_blend_right_shoulder.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_right_shoulder";
+connectAttr -f reverse_for_blend_right_shoulder.output2Dy inv_reverse_for_blend_right_shoulder.input1X;setAttr "inv_reverse_for_blend_right_shoulder.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_right_shoulder.outputX right_shoulder_translate_blend.blender;
+
+connectAttr -f joint_right_shoulder_IK.translate right_shoulder_translate_blend.color1;
+connectAttr -f joint_right_shoulder_FK.translate right_shoulder_translate_blend.color2;
+connectAttr -f right_shoulder_translate_blend.output joint_right_shoulder.translate;
+
+connectAttr -f joint_right_shoulder_FK.rotate right_shoulder_rotate_blend.color2;
+connectAttr -f joint_right_shoulder_IK.rotate right_shoulder_rotate_blend.color1;
+connectAttr -f inv_reverse_for_blend_right_shoulder.outputX right_shoulder_rotate_blend.blender;
+connectAttr -f right_shoulder_rotate_blend.output joint_right_shoulder.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_forearm_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_forearm_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_right_forearm";
+setAttr "reverse_for_blend_right_forearm.operation" 2;
+setAttr "reverse_for_blend_right_forearm.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_right_forearm.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_right_forearm.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms reverse_for_blend_right_forearm.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_right_forearm";
+connectAttr -f reverse_for_blend_right_forearm.output2Dy inv_reverse_for_blend_right_forearm.input1X;setAttr "inv_reverse_for_blend_right_forearm.input2X" -1;
+
+connectAttr -f inv_reverse_for_blend_right_forearm.outputX right_forearm_rotate_blend.blender;
+connectAttr -f inv_reverse_for_blend_right_forearm.outputX right_forearm_translate_blend.blender;
+
+
+connectAttr -f joint_right_forearm_IK.translate right_forearm_translate_blend.color1;
+connectAttr -f joint_right_forearm_FK.translate right_forearm_translate_blend.color2;
+connectAttr -f right_forearm_translate_blend.output joint_right_forearm.translate;
+
+connectAttr -f joint_right_forearm_IK.rotate right_forearm_rotate_blend.color1;
+connectAttr -f joint_right_forearm_FK.rotate right_forearm_rotate_blend.color2;
+connectAttr -f right_forearm_rotate_blend.output joint_right_forearm.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_hand_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_hand_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_right_hand";
+setAttr "reverse_for_blend_right_hand.operation" 2;
+setAttr "reverse_for_blend_right_hand.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_right_hand.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_right_hand.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Arms reverse_for_blend_right_hand.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_right_hand";
+connectAttr -f reverse_for_blend_right_hand.output2Dy inv_reverse_for_blend_right_hand.input1X;setAttr "inv_reverse_for_blend_right_hand.input2X" -1;
+
+connectAttr -f inv_reverse_for_blend_right_hand.outputX right_hand_rotate_blend.blender;
+connectAttr -f inv_reverse_for_blend_right_hand.outputX right_hand_translate_blend.blender;
+
+
+connectAttr -f joint_right_hand_IK.translate right_hand_translate_blend.color1;
+connectAttr -f joint_right_hand_FK.translate right_hand_translate_blend.color2;
+connectAttr -f right_hand_translate_blend.output joint_right_hand.translate;
+
+connectAttr -f joint_right_hand_IK.rotate right_hand_rotate_blend.color1;
+connectAttr -f joint_right_hand_FK.rotate right_hand_rotate_blend.color2;
+connectAttr -f right_hand_rotate_blend.output joint_right_hand.rotate;
+
+select -r left_thig_FK_Ctrl ;
+select -tgl joint_left_thig_FK ;
+parentConstraint -mo -weight 1;
+
+select -r left_leg_FK_Ctrl ;
+select -tgl joint_left_leg_FK ;
+parentConstraint -mo -weight 1;
+
+select -r right_thig_FK_Ctrl ;
+select -tgl joint_right_thig_FK ;
+parentConstraint -mo -weight 1;
+
+select -r right_leg_FK_Ctrl ;
+select -tgl joint_right_leg_FK ;
+parentConstraint -mo -weight 1;
+
+
+///// Blend IK Fk  left leg
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_thig_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_thig_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_left_thig";
+setAttr "reverse_for_blend_left_thig.operation" 2;
+setAttr "reverse_for_blend_left_thig.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_left_thig.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_left_thig.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_left_thig.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_left_thig";
+connectAttr -f reverse_for_blend_left_thig.output2Dy inv_reverse_for_blend_left_thig.input1X;setAttr "inv_reverse_for_blend_left_thig.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_left_thig.outputX left_thig_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_left_thig.outputX left_thig_rotate_blend.blender;
+
+connectAttr -f joint_left_thig_IK.translate left_thig_translate_blend.color1;
+connectAttr -f joint_left_thig_FK.translate left_thig_translate_blend.color2;
+connectAttr -f left_thig_translate_blend.output joint_left_thig.translate;
+
+connectAttr -f joint_left_thig_FK.rotate left_thig_rotate_blend.color2;
+connectAttr -f joint_left_thig_IK.rotate left_thig_rotate_blend.color1;
+connectAttr -f left_thig_rotate_blend.output joint_left_thig.rotate;
+
+
+
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_leg_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_leg_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_left_leg";
+setAttr "reverse_for_blend_left_leg.operation" 2;
+setAttr "reverse_for_blend_left_leg.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_left_leg.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_left_leg.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_left_leg.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_left_leg";
+connectAttr -f reverse_for_blend_left_leg.output2Dy inv_reverse_for_blend_left_leg.input1X;setAttr "inv_reverse_for_blend_left_leg.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_left_leg.outputX left_leg_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_left_leg.outputX left_leg_rotate_blend.blender;
+
+connectAttr -f joint_left_leg_IK.translate left_leg_translate_blend.color1;
+connectAttr -f joint_left_leg_FK.translate left_leg_translate_blend.color2;
+connectAttr -f left_leg_translate_blend.output joint_left_leg.translate;
+
+connectAttr -f joint_left_leg_FK.rotate left_leg_rotate_blend.color2;
+connectAttr -f joint_left_leg_IK.rotate left_leg_rotate_blend.color1;
+connectAttr -f left_leg_rotate_blend.output joint_left_leg.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_foot_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_foot_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_left_foot";
+setAttr "reverse_for_blend_left_foot.operation" 2;
+setAttr "reverse_for_blend_left_foot.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_left_foot.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_left_foot.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_left_foot.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_left_foot";
+connectAttr -f reverse_for_blend_left_foot.output2Dy inv_reverse_for_blend_left_foot.input1X;setAttr "inv_reverse_for_blend_left_foot.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_left_foot.outputX left_foot_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_left_foot.outputX left_foot_rotate_blend.blender;
+
+connectAttr -f joint_left_foot_IK.translate left_foot_translate_blend.color1;
+connectAttr -f joint_left_foot_FK.translate left_foot_translate_blend.color2;
+connectAttr -f left_foot_translate_blend.output joint_left_foot.translate;
+
+connectAttr -f joint_left_foot_FK.rotate left_foot_rotate_blend.color2;
+connectAttr -f joint_left_foot_IK.rotate left_foot_rotate_blend.color1;
+connectAttr -f left_foot_rotate_blend.output joint_left_foot.rotate;
+
+///// Blend IK Fk  right leg
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_thig_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_thig_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_right_thig";
+setAttr "reverse_for_blend_right_thig.operation" 2;
+setAttr "reverse_for_blend_right_thig.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_right_thig.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_right_thig.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_right_thig.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_right_thig";
+connectAttr -f reverse_for_blend_right_thig.output2Dy inv_reverse_for_blend_right_thig.input1X;setAttr "inv_reverse_for_blend_right_thig.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_right_thig.outputX right_thig_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_right_thig.outputX right_thig_rotate_blend.blender;
+
+connectAttr -f joint_right_thig_IK.translate right_thig_translate_blend.color1;
+connectAttr -f joint_right_thig_FK.translate right_thig_translate_blend.color2;
+connectAttr -f right_thig_translate_blend.output joint_right_thig.translate;
+
+connectAttr -f joint_right_thig_FK.rotate right_thig_rotate_blend.color2;
+connectAttr -f joint_right_thig_IK.rotate right_thig_rotate_blend.color1;
+connectAttr -f right_thig_rotate_blend.output joint_right_thig.rotate;
+
+
+
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_leg_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_leg_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_right_leg";
+setAttr "reverse_for_blend_right_leg.operation" 2;
+setAttr "reverse_for_blend_right_leg.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_right_leg.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_right_leg.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_right_leg.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_right_leg";
+connectAttr -f reverse_for_blend_right_leg.output2Dy inv_reverse_for_blend_right_leg.input1X;setAttr "inv_reverse_for_blend_right_leg.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_right_leg.outputX right_leg_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_right_leg.outputX right_leg_rotate_blend.blender;
+
+connectAttr -f joint_right_leg_IK.translate right_leg_translate_blend.color1;
+connectAttr -f joint_right_leg_FK.translate right_leg_translate_blend.color2;
+connectAttr -f right_leg_translate_blend.output joint_right_leg.translate;
+
+connectAttr -f joint_right_leg_FK.rotate right_leg_rotate_blend.color2;
+connectAttr -f joint_right_leg_IK.rotate right_leg_rotate_blend.color1;
+connectAttr -f right_leg_rotate_blend.output joint_right_leg.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_foot_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_foot_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_right_foot";
+setAttr "reverse_for_blend_right_foot.operation" 2;
+setAttr "reverse_for_blend_right_foot.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_right_foot.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_right_foot.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_right_foot.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_right_foot";
+connectAttr -f reverse_for_blend_right_foot.output2Dy inv_reverse_for_blend_right_foot.input1X;setAttr "inv_reverse_for_blend_right_foot.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_right_foot.outputX right_foot_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_right_foot.outputX right_foot_rotate_blend.blender;
+
+connectAttr -f joint_right_foot_IK.translate right_foot_translate_blend.color1;
+connectAttr -f joint_right_foot_FK.translate right_foot_translate_blend.color2;
+connectAttr -f right_foot_translate_blend.output joint_right_foot.translate;
+
+connectAttr -f joint_right_foot_FK.rotate right_foot_rotate_blend.color2;
+connectAttr -f joint_right_foot_IK.rotate right_foot_rotate_blend.color1;
+connectAttr -f right_foot_rotate_blend.output joint_right_foot.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_toes_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_toes_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_right_toes";
+setAttr "reverse_for_blend_right_toes.operation" 2;
+setAttr "reverse_for_blend_right_toes.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_right_toes.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_right_toes.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_right_toes.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_right_toes";
+connectAttr -f reverse_for_blend_right_toes.output2Dy inv_reverse_for_blend_right_toes.input1X;setAttr "inv_reverse_for_blend_right_toes.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_right_toes.outputX right_toes_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_right_toes.outputX right_toes_rotate_blend.blender;
+
+connectAttr -f joint_right_toes_IK.translate right_toes_translate_blend.color1;
+connectAttr -f joint_right_toes_FK.translate right_toes_translate_blend.color2;
+connectAttr -f right_toes_translate_blend.output joint_right_toes.translate;
+
+disconnectAttr joint_right_toes|joint_right_toes_parentConstraint1.constraintTranslateZ joint_right_toes.translateZ;
+disconnectAttr joint_right_toes|joint_right_toes_parentConstraint1.constraintTranslateX joint_right_toes.translateX;
+disconnectAttr joint_right_toes|joint_right_toes_parentConstraint1.constraintTranslateY joint_right_toes.translateY;
+disconnectAttr joint_right_toes|joint_right_toes_parentConstraint1.constraintRotateZ joint_right_toes.rotateZ;
+disconnectAttr joint_right_toes|joint_right_toes_parentConstraint1.constraintRotateX joint_right_toes.rotateX;
+disconnectAttr joint_right_toes|joint_right_toes_parentConstraint1.constraintRotateY joint_right_toes.rotateY;
+
+
+connectAttr -f joint_right_toes_FK.rotate right_toes_rotate_blend.color2;
+connectAttr -f joint_right_toes_IK.rotate right_toes_rotate_blend.color1;
+connectAttr -f right_toes_rotate_blend.output joint_right_toes.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_toes_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_toes_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_left_toes";
+setAttr "reverse_for_blend_left_toes.operation" 2;
+setAttr "reverse_for_blend_left_toes.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_left_toes.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_left_toes.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_left_toes.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_left_toes";
+connectAttr -f reverse_for_blend_left_toes.output2Dy inv_reverse_for_blend_left_toes.input1X;setAttr "inv_reverse_for_blend_left_toes.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_left_toes.outputX left_toes_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_left_toes.outputX left_toes_rotate_blend.blender;
+
+connectAttr -f joint_left_toes_IK.translate left_toes_translate_blend.color1;
+connectAttr -f joint_left_toes_FK.translate left_toes_translate_blend.color2;
+connectAttr -f left_toes_translate_blend.output joint_left_toes.translate;
+
+disconnectAttr joint_left_toes|joint_left_toes_parentConstraint1.constraintTranslateZ joint_left_toes.translateZ;
+disconnectAttr joint_left_toes|joint_left_toes_parentConstraint1.constraintTranslateX joint_left_toes.translateX;
+disconnectAttr joint_left_toes|joint_left_toes_parentConstraint1.constraintTranslateY joint_left_toes.translateY;
+disconnectAttr joint_left_toes|joint_left_toes_parentConstraint1.constraintRotateZ joint_left_toes.rotateZ;
+disconnectAttr joint_left_toes|joint_left_toes_parentConstraint1.constraintRotateX joint_left_toes.rotateX;
+disconnectAttr joint_left_toes|joint_left_toes_parentConstraint1.constraintRotateY joint_left_toes.rotateY;
+
+
+connectAttr -f joint_left_toes_FK.rotate left_toes_rotate_blend.color2;
+connectAttr -f joint_left_toes_IK.rotate left_toes_rotate_blend.color1;
+connectAttr -f left_toes_rotate_blend.output joint_left_toes.rotate;
+
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_end_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "left_end_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_left_end";
+setAttr "reverse_for_blend_left_end.operation" 2;
+setAttr "reverse_for_blend_left_end.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_left_end.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_left_end.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_left_end.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_left_end";
+connectAttr -f reverse_for_blend_left_end.output2Dy inv_reverse_for_blend_left_end.input1X;setAttr "inv_reverse_for_blend_left_end.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_left_end.outputX left_end_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_left_end.outputX left_end_rotate_blend.blender;
+
+connectAttr -f joint_left_end_IK.translate left_end_translate_blend.color1;
+connectAttr -f joint_left_end_FK.translate left_end_translate_blend.color2;
+connectAttr -f left_end_translate_blend.output joint_left_end.translate;
+
+
+connectAttr -f joint_left_end_FK.rotate left_end_rotate_blend.color2;
+connectAttr -f joint_left_end_IK.rotate left_end_rotate_blend.color1;
+connectAttr -f left_end_rotate_blend.output joint_left_end.rotate;
+
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_end_translate_blend" ;
+nodeEdCreateNodeCommand "blendColors";
+rename "blendColors1" "right_end_rotate_blend" ;
+
+nodeEdCreateNodeCommand "plusMinusAverage";
+rename "plusMinusAverage1" "reverse_for_blend_right_end";
+setAttr "reverse_for_blend_right_end.operation" 2;
+setAttr "reverse_for_blend_right_end.input2D[1].input2Dx" 1;
+setAttr "reverse_for_blend_right_end.input2D[2].input2Dx" 1;
+setAttr "reverse_for_blend_right_end.input2D[2].input2Dy" 1;
+connectAttr -f ikFkSwitch_Ctrl.IK_FK_Legs reverse_for_blend_right_end.input2D[1].input2Dy;
+
+
+shadingNode -asUtility multiplyDivide;
+rename "multiplyDivide1" "inv_reverse_for_blend_right_end";
+connectAttr -f reverse_for_blend_right_end.output2Dy inv_reverse_for_blend_right_end.input1X;setAttr "inv_reverse_for_blend_right_end.input2X" -1;
+
+
+connectAttr -f inv_reverse_for_blend_right_end.outputX right_end_translate_blend.blender;
+connectAttr -f inv_reverse_for_blend_right_end.outputX right_end_rotate_blend.blender;
+
+connectAttr -f joint_right_end_IK.translate right_end_translate_blend.color1;
+connectAttr -f joint_right_end_FK.translate right_end_translate_blend.color2;
+connectAttr -f right_end_translate_blend.output joint_right_end.translate;
+
+
+connectAttr -f joint_right_end_FK.rotate right_end_rotate_blend.color2;
+connectAttr -f joint_right_end_IK.rotate right_end_rotate_blend.color1;
+connectAttr -f right_end_rotate_blend.output joint_right_end.rotate;
+
+
+
+////////
+//Footroll
+////////////
+select -cl ;
+select -r joint_left_toes_IK joint_left_end_IK ;
+ikHandle;
+rename "ikHandle1" "left_footroll_Ik";
+
+select -cl ;
+select -r joint_right_toes_IK joint_right_end_IK ;
+ikHandle;
+rename "ikHandle1" "right_footroll_Ik";
+
+select -cl ;
+select -r joint_left_toes_FK joint_left_end_FK ;
+ikHandle;
+rename "ikHandle1" "left_footroll_Fk";
+
+select -cl ;
+select -r joint_right_toes_FK joint_right_end_FK ;
+ikHandle;
+rename "ikHandle1" "right_footroll_Fk";
+
+parent left_footroll_Ik left_ankle_IK_Ctrl ;
+parent right_footroll_Ik right_ankle_IK_Ctrl ;
+
+select -r right_feet_Ctrl ;
+select -add joint_right_toes_FK ;
+parentConstraint -mo -weight 1;
+
+select -r left_feet_Ctrl ;
+select -add joint_left_toes_FK ;
+parentConstraint -mo -weight 1;
+
+
+select -cl  ;
+doGroup 0 1 1;
+select -r null1 ;
+rename "null1" "left_footroll_sdk_IK";
+
+select -cl  ;
+doGroup 0 1 1;
+select -r null1 ;
+rename "null1" "right_footroll_sdk_IK";
+
+select -cl  ;
+doGroup 0 1 1;
+select -r null1 ;
+rename "null1" "left_footroll_sdk_FK";
+
+select -cl  ;
+doGroup 0 1 1;
+select -r null1 ;
+rename "null1" "right_footroll_sdk_FK";
+
+select -r right_footroll_sdk_FK ;
+select -add joint_right_toes_FK ;
+MatchTranslation;
+
+select -r left_footroll_sdk_FK ;
+select -add joint_left_toes_FK ;
+MatchTranslation;
+
+select -r right_footroll_sdk_IK ;
+select -add joint_right_toes_IK ;
+MatchTranslation;
+
+select -r left_footroll_sdk_IK ;
+select -add joint_left_toes_IK ;
+MatchTranslation;
+
+select -r right_footroll_sdk_IK ;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+select -r left_footroll_sdk_IK ;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+parent left_footroll_sdk_IK left_ankle_IK_Ctrl ;
+parent right_footroll_sdk_IK right_ankle_IK_Ctrl ;
+parent right_foot_Ik_Handle right_footroll_sdk_IK ;
+parent left_foot_Ik_Handle left_footroll_sdk_IK ;
+
+parent right_footroll_Fk right_leg_FK_Ctrl ;
+parent left_footroll_Fk left_leg_FK_Ctrl ;
+
+parent right_footroll_sdk_FK right_feet_Ctrl ;
+parent left_footroll_sdk_FK left_feet_Ctrl ;
+
+
+
+circle -name left_footroll_ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+circle -name right_footroll_ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+
+select -r right_footroll_ctrl ;
+select -tgl joint_right_toes_FK ;
+MatchTransform;
+
+select -r left_footroll_ctrl ;
+select -tgl joint_left_toes_FK ;
+MatchTransform;
+
+parent left_footroll_ctrl left_footroll_sdk_FK ;
+parent right_footroll_ctrl right_footroll_sdk_FK ;
+
+
+select -r right_footroll_ctrl ;
+select -add joint_right_foot_FK ;
+parentConstraint -mo -weight 1;
+
+select -r left_footroll_ctrl ;
+select -add joint_left_foot_FK ;
+parentConstraint -mo -weight 1;
+setAttr "right_footroll_ctrl.visibility" 0;
+setAttr "left_footroll_ctrl.visibility" 0;
+addAttr -ln "Footroll"  -at double  -min 0 -max 100 -dv 0 left_feet_Ctrl;
+setAttr -e-keyable true left_feet_Ctrl.Footroll;
+addAttr -ln "Footroll"  -at double  -min 0 -max 100 -dv 0 right_feet_Ctrl;
+setAttr -e-keyable true right_feet_Ctrl.Footroll;
+
+setDrivenKeyframe -currentDriver right_feet_Ctrl.Footroll right_footroll_sdk_FK.rotateX;
+setAttr "right_feet_Ctrl.Footroll" 100;
+setAttr "right_footroll_sdk_FK.rotateX" 45;
+setDrivenKeyframe -currentDriver right_feet_Ctrl.Footroll right_footroll_sdk_FK.rotateX;
+setAttr "right_feet_Ctrl.Footroll" 0;
+
+setDrivenKeyframe -currentDriver left_feet_Ctrl.Footroll left_footroll_sdk_FK.rotateX;
+setAttr "left_feet_Ctrl.Footroll" 100;
+setAttr "left_footroll_sdk_FK.rotateX" 45;
+setDrivenKeyframe -currentDriver left_feet_Ctrl.Footroll left_footroll_sdk_FK.rotateX;
+setAttr "left_feet_Ctrl.Footroll" 0;
+
+
+addAttr -ln "Footroll"  -at double  -min 0 -max 100 -dv 0 left_ankle_IK_Ctrl;
+setAttr -e-keyable true left_ankle_IK_Ctrl.Footroll;
+addAttr -ln "Footroll"  -at double  -min 0 -max 100 -dv 0 right_ankle_IK_Ctrl;
+setAttr -e-keyable true right_ankle_IK_Ctrl.Footroll;
+
+
+setDrivenKeyframe -currentDriver right_ankle_IK_Ctrl.Footroll right_footroll_sdk_IK.rotateX;
+setAttr "right_ankle_IK_Ctrl.Footroll" 100;
+setAttr "right_footroll_sdk_IK.rotateX" 45;
+setDrivenKeyframe -currentDriver right_ankle_IK_Ctrl.Footroll right_footroll_sdk_IK.rotateX;
+setAttr "right_ankle_IK_Ctrl.Footroll" 0;
+
+setDrivenKeyframe -currentDriver left_ankle_IK_Ctrl.Footroll left_footroll_sdk_IK.rotateX;
+setAttr "left_ankle_IK_Ctrl.Footroll" 100;
+setAttr "left_footroll_sdk_IK.rotateX" 45;
+setDrivenKeyframe -currentDriver left_ankle_IK_Ctrl.Footroll left_footroll_sdk_IK.rotateX;
+setAttr "left_ankle_IK_Ctrl.Footroll" 0;
+
+/////////
+// Close hand
+///////////
+
+addAttr -ln "Close_Open_hand"  -at double  -min 0 -max 100 -dv 0 left_hand_Ctrl;
+setAttr -e-keyable true left_hand_Ctrl.Close_Open_hand;
+
+addAttr -ln "Close_Open_hand"  -at double  -min 0 -max 100 -dv 0 right_hand_Ctrl;
+setAttr -e-keyable true right_hand_Ctrl.Close_Open_hand;
+
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_thumb_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_thumb_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_thumb_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_index_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_index_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_index_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_middle_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_middle_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_middle_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_ring_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_ring_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_ring_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_pinkie_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_pinkie_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_pinkie_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_thumb_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_thumb_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_thumb_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_index_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_index_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_index_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_middle_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_middle_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_middle_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_ring_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_ring_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_ring_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_pinkie_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_pinkie_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_pinkie_3_Ctrl.rotateZ;
+
+
+
+setAttr "left_hand_Ctrl.Close_Open_hand" 100;
+select -cl  ;
+select -r left_index_1_Ctrl ;
+rotate -r -os -fo 0 0 -70 ;
+select -cl  ;
+select -r left_middle_1_Ctrl ;
+rotate -r -os -fo 0 0 -70 ;
+select -cl  ;
+select -r left_ring_1_Ctrl ;
+rotate -r -os -fo 0 0 -70 ;
+select -cl  ;
+select -r left_pinkie_1_Ctrl ;
+rotate -r -os -fo 0 0 -70 ;
+select -cl  ;
+select -r left_thumb_1_Ctrl ;
+rotate -r -os -fo 0 0 -20 ;
+
+select -r left_index_2_Ctrl ;
+rotate -r -os -fo 0 0 -75 ;
+select -cl  ;
+select -r left_middle_2_Ctrl ;
+rotate -r -os -fo 0 0 -75 ;
+select -cl  ;
+select -r left_ring_2_Ctrl ;
+rotate -r -os -fo 0 0 -75 ;
+select -cl  ;
+select -r left_pinkie_2_Ctrl ;
+rotate -r -os -fo 0 0 -75 ;
+select -cl  ;
+select -r left_thumb_2_Ctrl ;
+rotate -r -os -fo 0 0 -35 ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_thumb_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_thumb_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_thumb_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_index_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_index_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_index_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_middle_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_middle_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_middle_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_ring_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_ring_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_ring_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_pinkie_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_pinkie_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver left_hand_Ctrl.Close_Open_hand left_pinkie_3_Ctrl.rotateZ;
+
+
+setAttr "right_hand_Ctrl.Close_Open_hand" 100;
+select -cl  ;
+select -r right_index_1_Ctrl ;
+rotate -r -os -fo 0 0 -70 ;
+select -cl  ;
+select -r right_middle_1_Ctrl ;
+rotate -r -os -fo 0 0 -70 ;
+select -cl  ;
+select -r right_ring_1_Ctrl ;
+rotate -r -os -fo 0 0 -70 ;
+select -cl  ;
+select -r right_pinkie_1_Ctrl ;
+rotate -r -os -fo 0 0 -70 ;
+select -cl  ;
+select -r right_thumb_1_Ctrl ;
+rotate -r -os -fo 0 0 -20 ;
+
+select -r right_index_2_Ctrl ;
+rotate -r -os -fo 0 0 -75 ;
+select -cl  ;
+select -r right_middle_2_Ctrl ;
+rotate -r -os -fo 0 0 -75 ;
+select -cl  ;
+select -r right_ring_2_Ctrl ;
+rotate -r -os -fo 0 0 -75 ;
+select -cl  ;
+select -r right_pinkie_2_Ctrl ;
+rotate -r -os -fo 0 0 -75 ;
+select -cl  ;
+select -r right_thumb_2_Ctrl ;
+rotate -r -os -fo 0 0 -35 ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_thumb_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_thumb_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_thumb_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_index_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_index_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_index_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_middle_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_middle_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_middle_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_ring_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_ring_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_ring_3_Ctrl.rotateZ;
+
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_pinkie_1_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_pinkie_2_Ctrl.rotateZ;
+setDrivenKeyframe -currentDriver right_hand_Ctrl.Close_Open_hand right_pinkie_3_Ctrl.rotateZ;
+
+setAttr "left_hand_Ctrl.Close_Open_hand" 0;
+setAttr "right_hand_Ctrl.Close_Open_hand" 0;
+
+/////////////////
+/// TWIST JOINT
+///////////////////
+
+
+/////////////////
+// Left Arm Twist joint
+/////////////////
+eval( "source \"12_Left_arm_twist\"" );
+/////////////////
+// Left ForeArm Twist joint
+/////////////////
+eval( "source \"13_Left_forearm_twist\"" );
+/////////////////
+// Right Arm Twist joint
+/////////////////
+eval( "source \"14_right_arm_twist\"" );
+/////////////////
+// Right foreArm Twist joint
+/////////////////
+eval( "source \"15_right_forearm_twist\"" );
+/////////////////
+// Left Upper leg Twist joint
+/////////////////
+eval( "source \"16_Left_upperleg_twist\"" );
+/////////////////
+// Left leg Twist joint
+/////////////////
+eval( "source \"17_Left_leg_twist\"" );
+/////////////////
+// right Upper leg Twist joint
+/////////////////
+eval( "source \"18_right_upperleg_twist\"" );
+/////////////////
+// right leg Twist joint
+/////////////////
+eval( "source \"19_right_leg_twist\"" );
+
+
+select -r joint_right_thig ;
+select -add Joint_right_thig_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -r joint_left_thig ;
+select -add Joint_left_thig_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -r joint_right_shoulder ;
+select -add Joint_right_shoulder_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -r joint_left_shoulder ;
+select -add Joint_left_shoulder_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+
+setAttr "loc_right_hand_aim.visibility" 0;
+setAttr "loc_right_shoulder_aim.visibility" 0;
+setAttr "loc_left_shoulder_aim.visibility" 0;
+setAttr "loc_left_hand_aim.visibility" 0;
+setAttr "loc_right_thig_aim.visibility" 0;
+setAttr "loc_left_thig_aim.visibility" 0;
+setAttr "loc_right_foot_aim.visibility" 0;
+setAttr "loc_left_foot_aim.visibility" 0;
+
+
+///////////
+//Final parenting
+select -r joint_left_hand ;
+select -add Joint_left_hand_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -r joint_right_hand ;
+select -add Joint_right_hand_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -r joint_left_foot ;
+select -add Joint_left_foot_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -r joint_right_foot ;
+select -add Joint_right_foot_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+//Cleanning Outliner
+
+
+select -r Joint_right_leg_aim2 ;
+select -add Joint_right_thig_twist ;
+select -add Joint_right_leg_aim ;
+select -add Joint_left_foot_twist ;
+select -add loc_left_leg_twist ;
+select -add loc_left_leg_twist ;
+select -add Joint_left_leg_aim2 ;
+select -add Joint_left_leg_aim ;
+select -add Joint_left_thig_twist ;
+select -add loc_right_leg_twist ;
+select -add loc_right_upper_leg_twist ;
+select -add loc_left_leg_twist ;
+select -add loc_left_upper_leg_twist ;
+select -add loc_right_forearm_twist ;
+select -add loc_right_arm_twist ;
+select -add loc_left_forearm_twist ;
+select -add Joint_left_forearm_aim2 ;
+select -add Joint_left_hand_twist ;
+select -add Joint_right_forearm_aim ;
+select -add Joint_right_shoulder_twist ;
+select -add Joint_right_forearm_aim2 ;
+select -add Joint_right_hand_twist ;
+select -add Joint_left_shoulder_twist ;
+select -add Joint_left_forearm_aim ;
+select -add loc_left_arm_twist ;
+select -add Joint_right_foot_twist ;
+doGroup  0 1 1;
+rename "group1" "grp_twistJoint";
+
+select -r right_arm_constraint_loc left_arm_constraint_loc ;
+doGroup 0 1 1;
+rename "group1" "grp_handFeet_ctrl";
+
+select -r ribbon_right_leg_twist ribbon_right_upper_leg_twist ribbon_left_leg_twist ribbon_left_upper_leg_twist ribbon_right_forearm_twist ribbon_right_arm_twist ribbon_left_forearm_twist ribbon_left_arm_twist ;
+doGroup 0 1 1;
+rename "group1" "grp_ribbonTwist";
+
+select -r root_Ctrl right_Wrist_IK_Ctrl left_Wrist_IK_Ctrl ;
+doGroup 0 1 1;
+rename "group1" "grp_ctrl";
+
+select -r joint_Hips ;
+doGroup 0 1 1;
+rename "group1" "grp_joint";
+
+select -r grp_ribbonTwist grp_handFeet_ctrl grp_twistJoint grp_ctrl grp_joint Locator_grp ;
+doGroup 0 1 1;
+rename "group1" "grp_Biped_rig";
+
+parent right_hand_Ctrl grp_ctrl ;
+parent left_hand_Ctrl grp_ctrl ;
+
+
+
+
+curve -d 1 -p 0 0 10 -p 0 0 -9 -k 0 -k 1 ;
+select -r curve1.cv[0] ;
+CreateCluster;
+select -r curve1.cv[1] ;
+CreateCluster;
+
+
+setAttr "curve1.overrideEnabled" 1;
+setAttr "curve1.overrideColor" 9;
+
+
+select -r cluster1Handle ;
+select -add left_knee_IK_Ctrl ;
+MatchTranslation;
+
+select -r cluster2Handle ;
+select -add joint_left_leg ;
+MatchTranslation;
+
+select -r cluster2Handle ;
+select -add joint_left_leg ;
+group cluster2Handle; select group1 joint_left_leg; parent;
+rename "group1" "left_leg_polevector";
+
+select -r cluster1Handle ;
+select -tgl left_knee_IK_Ctrl ;
+group cluster1Handle; select group1 left_knee_IK_Ctrl; parent;
+rename "group1" "left_leg_polevector2";
+
+rename "curve1" "left_leg_polevector_line";
+
+
+curve -d 1 -p 0 0 10 -p 0 0 -9 -k 0 -k 1 ;
+select -r curve1.cv[0] ;
+CreateCluster;
+select -r curve1.cv[1] ;
+CreateCluster;
+
+
+setAttr "curve1.overrideEnabled" 1;
+setAttr "curve1.overrideColor" 28;
+
+
+select -r cluster3Handle ;
+select -add right_knee_IK_Ctrl ;
+MatchTranslation;
+
+select -r cluster4Handle ;
+select -add joint_right_leg ;
+MatchTranslation;
+
+select -r cluster4Handle ;
+select -add joint_right_leg ;
+group cluster4Handle; select group1 joint_right_leg; parent;
+rename "group1" "right_leg_polevector";
+
+select -r cluster3Handle ;
+select -tgl right_knee_IK_Ctrl ;
+group cluster3Handle; select group1 right_knee_IK_Ctrl; parent;
+rename "group1" "right_leg_polevector2";
+
+rename "curve1" "right_leg_polevector_line";
+
+
+curve -d 1 -p 0 0 10 -p 0 0 -9 -k 0 -k 1 ;
+select -r curve1.cv[0] ;
+CreateCluster;
+select -r curve1.cv[1] ;
+CreateCluster;
+
+
+setAttr "curve1.overrideEnabled" 1;
+setAttr "curve1.overrideColor" 9;
+
+
+select -r cluster5Handle ;
+select -add left_elbow_IK_Ctrl ;
+MatchTranslation;
+
+select -r cluster6Handle ;
+select -add joint_left_forearm ;
+MatchTranslation;
+
+select -r cluster6Handle ;
+select -add joint_left_forearm ;
+group cluster6Handle; select group1 joint_left_forearm; parent;
+rename "group1" "left_knee_polevector";
+
+select -r cluster5Handle ;
+select -tgl left_knee_IK_Ctrl ;
+group cluster5Handle; select group1 left_elbow_IK_Ctrl; parent;
+rename "group1" "left_knee_polevector2";
+
+rename "curve1" "left_knee_polevector_line";
+
+
+curve -d 1 -p 0 0 10 -p 0 0 -9 -k 0 -k 1 ;
+select -r curve1.cv[0] ;
+CreateCluster;
+select -r curve1.cv[1] ;
+CreateCluster;
+
+
+setAttr "curve1.overrideEnabled" 1;
+setAttr "curve1.overrideColor" 28;
+
+
+select -r cluster7Handle ;
+select -add right_elbow_IK_Ctrl ;
+MatchTranslation;
+
+select -r cluster8Handle ;
+select -add joint_right_forearm ;
+MatchTranslation;
+
+select -r cluster8Handle ;
+select -add joint_right_forearm ;
+group cluster8Handle; select group1 joint_right_forearm; parent;
+rename "group1" "right_knee_polevector";
+
+select -r cluster7Handle ;
+select -tgl right_knee_IK_Ctrl ;
+group cluster7Handle; select group1 right_elbow_IK_Ctrl; parent;
+rename "group1" "right_knee_polevector2";
+
+rename "curve1" "right_knee_polevector_line";
+
+
+
+// Create a window with a button
+string $window = `window -title "weightMap" -widthHeight 500 350`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Import Weight map on ribbon";
+text -label "to finish the setup ";
+text -label "";
+text -label "";
+text -label "Left_arm_twist_weightmap.weightMap			on		ribbon_right_leg_twist ";
+text -label "";
+text -label "Left_forearm_twist_weightmap.weightMap		on		ribbon_right_leg_twist ";
+text -label "";
+text -label "Left_leg_twist_weightmap.weightMap			on		ribbon_right_leg_twist ";
+text -label "";
+text -label "Left_upper_leg_twist_weightmap.weightMap	on		ribbon_right_leg_twist ";
+text -label "";
+text -label "Right_arm_twist_weightmap.weightMap			on		ribbon_right_leg_twist ";
+text -label "";
+text -label "Right_forearm_twist_weightmap.weightMap		on		ribbon_right_leg_twist ";
+text -label "";
+text -label "Right_leg_twist_weightmap.weightMap			on		ribbon_right_leg_twist ";
+text -label "";
+text -label "Right_upper_leg_twist_weightmap.weightMap	on		ribbon_right_leg_twist ";
+text -label "";
+text -label "";
+text -label "";
+
+button -label "End" -command "deleteUI $window;";
+
+// Show the window
+showWindow $window;

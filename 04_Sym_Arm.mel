@@ -1,0 +1,396 @@
+
+
+
+
+// Symetrize loc_left_shoulder
+select -cl  ;
+select -r loc_left_shoulder ;
+duplicate -rr;
+rename "loc_left_shoulder1" "loc_right_shoulder";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_shoulder";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+
+// Symetrize loc_left_forearm
+select -cl  ;
+select -r loc_left_forearm ;
+duplicate -rr;
+rename "loc_left_forearm1" "loc_right_forearm";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_forearm";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_hand
+select -cl  ;
+select -r loc_left_hand ;
+duplicate -rr;
+rename "loc_left_hand1" "loc_right_hand";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_hand";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_pinkie_1
+select -cl  ;
+select -r loc_left_pinkie_1 ;
+duplicate -rr;
+rename "loc_left_pinkie_4" "loc_right_pinkie_1";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_pinkie_1";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_pinkie_2
+select -cl  ;
+select -r loc_left_pinkie_2 ;
+duplicate -rr;
+rename "loc_left_pinkie_4" "loc_right_pinkie_2";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_pinkie_2";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_pinkie_3
+select -cl  ;
+select -r loc_left_pinkie_3 ;
+duplicate -rr;
+rename "loc_left_pinkie_4" "loc_right_pinkie_3";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_pinkie_3";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+
+
+// Symetrize loc_left_ring_1
+select -cl  ;
+select -r loc_left_ring_1 ;
+duplicate -rr;
+rename "loc_left_ring_4" "loc_right_ring_1";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_ring_1";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_ring_2
+select -cl  ;
+select -r loc_left_ring_2 ;
+duplicate -rr;
+rename "loc_left_ring_4" "loc_right_ring_2";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_ring_2";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_ring_3
+select -cl  ;
+select -r loc_left_ring_3 ;
+duplicate -rr;
+rename "loc_left_ring_4" "loc_right_ring_3";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_ring_3";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+
+
+// Symetrize loc_left_middle_1
+select -cl  ;
+select -r loc_left_middle_1 ;
+duplicate -rr;
+rename "loc_left_middle_4" "loc_right_middle_1";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_middle_1";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_middle_2
+select -cl  ;
+select -r loc_left_middle_2 ;
+duplicate -rr;
+rename "loc_left_middle_4" "loc_right_middle_2";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_middle_2";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_middle_3
+select -cl  ;
+select -r loc_left_middle_3 ;
+duplicate -rr;
+rename "loc_left_middle_4" "loc_right_middle_3";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_middle_3";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+
+
+
+
+// Symetrize loc_left_index_1
+select -cl  ;
+select -r loc_left_index_1 ;
+duplicate -rr;
+rename "loc_left_index_4" "loc_right_index_1";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_index_1";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_index_2
+select -cl  ;
+select -r loc_left_index_2 ;
+duplicate -rr;
+rename "loc_left_index_4" "loc_right_index_2";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_index_2";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_index_3
+select -cl  ;
+select -r loc_left_index_3 ;
+duplicate -rr;
+rename "loc_left_index_4" "loc_right_index_3";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_index_3";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+
+
+
+
+
+// Symetrize loc_left_thumb_1
+select -cl  ;
+select -r loc_left_thumb_1 ;
+duplicate -rr;
+rename "loc_left_thumb_4" "loc_right_thumb_1";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_thumb_1";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_thumb_2
+select -cl  ;
+select -r loc_left_thumb_2 ;
+duplicate -rr;
+rename "loc_left_thumb_4" "loc_right_thumb_2";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_thumb_2";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize loc_left_thumb_3
+select -cl  ;
+select -r loc_left_thumb_3 ;
+duplicate -rr;
+rename "loc_left_thumb_4" "loc_right_thumb_3";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_thumb_3";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+//////////////////////////////////////////////////////
+///Group Locator and Joint creation
+//////////////////////////////////////////////////////
+select -r loc_right_thumb_3 loc_right_thumb_2 loc_right_thumb_1 loc_right_index_3 loc_right_index_2 loc_right_index_1 loc_right_middle_3 loc_right_middle_2 loc_right_middle_1 loc_right_ring_3 loc_right_ring_2 loc_right_ring_1 loc_right_pinkie_3 loc_right_pinkie_2 loc_right_pinkie_1 loc_right_hand loc_right_forearm loc_right_shoulder loc_left_thumb_3 loc_left_thumb_2 loc_left_thumb_1 loc_left_index_3 loc_left_index_2 loc_left_index_1 loc_left_middle_3 loc_left_middle_2 loc_left_middle_1 loc_left_ring_3 loc_left_ring_2 loc_left_ring_1 loc_left_pinkie_3 loc_left_pinkie_2 loc_left_pinkie_1 loc_left_hand loc_left_forearm loc_left_shoulder loc_Spine_4 loc_Spine_3 loc_Spine_2 loc_Spine_1 loc_neck loc_head loc_right_end loc_right_toes loc_right_foot loc_right_leg loc_right_thig loc_left_end loc_left_toes loc_left_foot loc_left_leg loc_left_thig loc_Hips loc_top loc_base loc_clavicle_right loc_clavicle_left loc_pec_right loc_pec_left ;
+doGroup 0 1 1;
+select -r group1 ;
+rename "group1" "Locator_grp";
+
+////////////////////////////////////////////
+//Joint crea
+///////////////////////////////////////////
+
+
+// Create a window with a button
+string $window = `window -title "Check Arm and hand locator" -widthHeight 300 100`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Final Locator Check";
+text -label "Then click continue ";
+
+button -label "Continue to Orient Joint" -command "deferredcreajoint(); deleteUI $window;";
+
+// Show the window
+showWindow $window;
+
+// Function to execute the Symetrize leg locator and create spine to head locator
+global proc creajoint() {
+		eval( "source \"05_Crea_Joint\"" );
+
+}
+
+// Deferred function to be called when the button is pressed
+global proc deferredcreajoint() {
+    // Execute the main code in the next idle event
+    evalDeferred("creajoint");
+}

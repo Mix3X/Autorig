@@ -1,0 +1,40 @@
+select -cl  ;
+select -r joint_left_thumb_1;
+
+ToggleLocalRotationAxes;
+
+viewFit;
+setToolTo Rotate;
+manipRotateContext -e -mode 0 Rotate;
+
+hilite -r joint_left_thumb_1 ;
+select -r joint_left_thumb_1.rotateAxis ;
+
+
+
+// Create a window with a button
+string $window = `window -title "joint_left_thumb_1 Orientation" -widthHeight 300 100`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Check left_thumb_1 Orientation";
+text -label "Then click continue ";
+text -label "";
+
+button -label "Continue to left_thumb_2" -command "deferredleft_thumb(); deleteUI $window;";
+
+// Show the window
+showWindow $window;
+
+// Function to execute the Symetrize leg locator and create spine to head locator
+global proc deferredleft_thumb_2() {
+		eval( "source \"07_left_thumb_2\"" );
+
+}
+
+// Deferred function to be called when the button is pressed
+global proc deferredleft_thumb() {
+    // Execute the main code in the next idle event
+    evalDeferred("deferredleft_thumb_2");
+}
+

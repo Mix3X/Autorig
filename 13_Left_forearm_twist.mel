@@ -1,0 +1,134 @@
+proc float getDistanceBetweenLocators(string $locator1, string $locator2) {
+    float $pos1[] = `xform -q -ws -t $locator1`;
+    float $pos2[] = `xform -q -ws -t $locator2`;
+
+    float $distance = sqrt(pow(($pos2[0] - $pos1[0]), 2) + pow(($pos2[1] - $pos1[1]), 2) + pow(($pos2[2] - $pos1[2]), 2));
+    
+    return $distance;
+}
+/////////////////
+// Left ForeArm Twist joint
+/////////////////
+
+
+
+// calculate the distance beetwen top and base_loc
+string $locator1 = "joint_left_hand"; // Replace with the actual name of your first locator
+string $locator2 = "joint_left_forearm"; // Replace with the actual name of your second locator
+
+float $distance_main_coude_droit = getDistanceBetweenLocators($locator1, $locator2);
+print("Distance between locators: " + $distance_main_coude_droit + "\n");
+
+
+/////////////////
+select -cl  ;
+joint -p 0 0 0 -name Joint_left_hand_twist -rad 4;
+select -cl  ;
+joint -p 0 0 0 -name Joint_left_forearm_aim2 -rad 4;
+
+select -r Joint_left_hand_twist ;
+select -add joint_left_hand ;
+MatchTransform;
+
+select -r Joint_left_forearm_aim2 ;
+select -add joint_left_forearm ;
+MatchTransform;
+
+select -r joint_left_forearm ;
+select -add Joint_left_forearm_aim2 ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+
+spaceLocator -p 0 0 0 -name loc_left_forearm_twist;
+spaceLocator -p 0 0 0 -name loc_left_hand_aim;
+
+
+select -cl  ;
+select -r joint_left_hand ;
+select -add joint_left_forearm ;
+select -add loc_left_forearm_twist ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+
+select -cl  ;
+select -r Joint_left_forearm_aim2 ;
+select -add loc_left_forearm_twist ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 1 0 0 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -cl  ;
+select -r loc_left_forearm_twist_pointConstraint1 ;
+select -add loc_left_forearm_twist_aimConstraint1 ;
+doDelete;
+
+
+select -cl  ;
+joint -p 0 0 0 -name Joint_left_forearm_twist -rad 4;
+select -cl  ;
+select -r Joint_left_forearm_twist ;
+select -add loc_left_forearm_twist ;
+MatchTransform;
+select -cl  ;
+parent Joint_left_forearm_twist Joint_left_hand_twist ;
+
+
+select -cl  ;
+select -r joint_left_hand ;
+select -add Joint_left_forearm_aim2 ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector -1 0 0 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -r loc_left_hand_aim ;
+select -add joint_left_hand ;
+MatchTransform ;
+select -cl  ;
+select -r loc_left_hand_aim ;
+move -r -os -wd 0 0 -15 ;
+parent loc_left_hand_aim joint_left_hand ;
+select -cl  ;
+select -r Joint_left_forearm_aim2 ;
+select -add Joint_left_hand_twist ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector -1 0 0 -upVector 0 0 -1 -worldUpType "object" -worldUpObject loc_left_hand_aim;
+
+float $largeur_ribbon = $distance_main_coude_droit / 6.7 ;
+polyPlane -name ribbon_left_forearm_twist -w $distance_main_coude_droit -h $largeur_ribbon -sx 4 -sy 1 -ax 0 1 0 -cuv 2 -ch 1;
+
+
+select -r ribbon_left_forearm_twist ;
+select -r ribbon_left_forearm_twist loc_left_forearm_twist ;
+MatchTransform;
+
+select -r Joint_left_hand_twist ;
+select -add Joint_left_forearm_aim2 ;
+select -add ribbon_left_forearm_twist ;
+
+newSkinCluster "-toSelectedBones -bindMethod 0  -normalizeWeights 1 -weightDistribution 0 -mi 5 -omi true -dr 4 -rui true  , multipleBindPose, 1";
+
+
+circle -name left_forearm_twist_ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 10 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+select -cl  ;
+select -r left_forearm_twist_ctrl ;
+hilite left_forearm_twist_ctrl ;
+select -r left_forearm_twist_ctrl.cv[6] ;
+select -tgl left_forearm_twist_ctrl.cv[4] ;
+select -tgl left_forearm_twist_ctrl.cv[2] ;
+select -tgl left_forearm_twist_ctrl.cv[0] ;
+scale -r -p 0cm 0cm 0cm 0.222747 0.222747 0.222747 ;
+setAttr "left_forearm_twist_ctrl.rotateZ" -90;
+select -cl  ;
+select -r left_forearm_twist_ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+select -r left_forearm_twist_ctrl ;
+select -r left_forearm_twist_ctrl ribbon_left_forearm_twist ;
+MatchTransform;
+
+select -r ribbon_left_forearm_twist ;
+select -add loc_left_forearm_twist ;
+UVPin;
+
+parent left_forearm_twist_ctrl loc_left_forearm_twist ;
+
+select -cl  ;
+select -r left_forearm_twist_ctrl ;
+select -add Joint_left_forearm_twist ;
+parentConstraint -mo -weight 1;

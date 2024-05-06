@@ -1,0 +1,55 @@
+////////////////////
+// Start Autorig 
+// Leg Locator Creation
+///////////////////
+
+
+
+// Create Locator at Base and top
+spaceLocator -n loc_base -p 0 0 0;
+setAttr "loc_baseShape.overrideEnabled" 1;
+setAttr "loc_baseShape.overrideColor" 21;
+select -r loc_base ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+spaceLocator -n loc_top -p 0 0 0;
+setAttr "loc_top.translateY" 180;
+setAttr "loc_topShape.overrideEnabled" 1;
+setAttr "loc_topShape.overrideColor" 21;
+select -r loc_top ;
+scale -r 10 10 10 ;
+select -cl  ;
+// Create a window with a button
+string $window = `window -title "Check Top a Base Locator" -widthHeight 300 100`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Check and adjust the locator position";
+text -label "should be on the ground and top of the head";
+text -label "Then click Continue ";
+text -label "";
+
+button -label "Continue to Left Leg " -command "deferredleftleg(); deleteUI $window;";
+
+// Show the window
+select -cl  ;   
+viewFit ;
+showWindow $window;
+
+// Function to execute the main code
+global proc leftleg() {
+		
+		evalDeferred( "source \"01_Left_Leg_Locator\"" );
+
+}
+
+// Deferred function to be called when the button is presed
+global proc deferredleftleg() {
+    // Execute the main code in the next idle event
+    evalDeferred("leftleg");
+}
+
+
+
+

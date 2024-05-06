@@ -1,0 +1,335 @@
+
+//////////////////////////////////////////////////////
+///LEFT ARM LOCATOR
+//////////////////////////////////////////////////////
+
+// Create Locator left_shoulder
+
+float $distance_X_left_end = $distance / 12.5;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / -46.15;
+
+spaceLocator -n loc_left_shoulder -p 0 0 0;
+setAttr "loc_left_shoulder.translateX" $distance_X_left_end ;
+setAttr "loc_left_shoulder.translateY" $distance_Y_left_end ;
+setAttr "loc_left_shoulder.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_shoulderShape.overrideEnabled" 1;
+setAttr "loc_left_shoulderShape.overrideColor" 21;
+select -r loc_left_shoulder ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator left_forearm
+
+float $distance_X_left_end = $distance / 4.4;
+float $distance_Y_left_end = $distance / 1.25;
+float $distance_Z_left_end = $distance / -36.73;
+
+spaceLocator -n loc_left_forearm -p 0 0 0;
+setAttr "loc_left_forearm.translateX" $distance_X_left_end ;
+setAttr "loc_left_forearm.translateY" $distance_Y_left_end ;
+setAttr "loc_left_forearm.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_forearmShape.overrideEnabled" 1;
+setAttr "loc_left_forearmShape.overrideColor" 21;
+select -r loc_left_forearm ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator left_hand
+
+float $distance_X_left_end = $distance / 2.7;
+float $distance_Y_left_end = $distance / 1.23;
+float $distance_Z_left_end = $distance / 114.95;
+
+spaceLocator -n loc_left_hand -p 0 0 0;
+setAttr "loc_left_hand.translateX" $distance_X_left_end ;
+setAttr "loc_left_hand.translateY" $distance_Y_left_end ;
+setAttr "loc_left_hand.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_handShape.overrideEnabled" 1;
+setAttr "loc_left_handShape.overrideColor" 21;
+select -r loc_left_hand ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+
+//////////////////////////////////////////////////////
+///LEFT HAND LOCATOR
+//////////////////////////////////////////////////////
+
+
+// Create Locator pinkie_1
+
+float $distance_X_left_end = $distance / 2.7;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / -656.93;
+
+spaceLocator -n loc_left_pinkie_1 -p 0 0 0;
+setAttr "loc_left_pinkie_1.translateX" $distance_X_left_end ;
+setAttr "loc_left_pinkie_1.translateY" $distance_Y_left_end ;
+setAttr "loc_left_pinkie_1.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_pinkie_1Shape.overrideEnabled" 1;
+setAttr "loc_left_pinkie_1Shape.overrideColor" 21;
+select -r loc_left_pinkie_1 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator pinkie_2
+
+float $distance_X_left_end = $distance / 2.46;
+float $distance_Y_left_end = $distance / 1.23;
+float $distance_Z_left_end = $distance / -156.11;
+
+spaceLocator -n loc_left_pinkie_2 -p 0 0 0;
+setAttr "loc_left_pinkie_2.translateX" $distance_X_left_end ;
+setAttr "loc_left_pinkie_2.translateY" $distance_Y_left_end ;
+setAttr "loc_left_pinkie_2.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_pinkie_2Shape.overrideEnabled" 1;
+setAttr "loc_left_pinkie_2Shape.overrideColor" 21;
+select -r loc_left_pinkie_2 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+
+// Create Locator pinkie_3
+
+float $distance_X_left_end = $distance / 2.37;
+float $distance_Y_left_end = $distance / 1.23;
+float $distance_Z_left_end = $distance / -124.13;
+
+spaceLocator -n loc_left_pinkie_3 -p 0 0 0;
+setAttr "loc_left_pinkie_3.translateX" $distance_X_left_end ;
+setAttr "loc_left_pinkie_3.translateY" $distance_Y_left_end ;
+setAttr "loc_left_pinkie_3.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_pinkie_3Shape.overrideEnabled" 1;
+setAttr "loc_left_pinkie_3Shape.overrideColor" 21;
+select -r loc_left_pinkie_3 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+
+// Create Locator ring_1
+
+float $distance_X_left_end = $distance / 2.66;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / 188.48;
+
+spaceLocator -n loc_left_ring_1 -p 0 0 0;
+setAttr "loc_left_ring_1.translateX" $distance_X_left_end ;
+setAttr "loc_left_ring_1.translateY" $distance_Y_left_end ;
+setAttr "loc_left_ring_1.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_ring_1Shape.overrideEnabled" 1;
+setAttr "loc_left_ring_1Shape.overrideColor" 21;
+select -r loc_left_ring_1 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator ring_2
+
+float $distance_X_left_end = $distance / 2.45;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / 214.54;
+
+spaceLocator -n loc_left_ring_2 -p 0 0 0;
+setAttr "loc_left_ring_2.translateX" $distance_X_left_end ;
+setAttr "loc_left_ring_2.translateY" $distance_Y_left_end ;
+setAttr "loc_left_ring_2.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_ring_2Shape.overrideEnabled" 1;
+setAttr "loc_left_ring_2Shape.overrideColor" 21;
+select -r loc_left_ring_2 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator ring_3
+
+float $distance_X_left_end = $distance / 2.31;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / 268.255;
+
+spaceLocator -n loc_left_ring_3 -p 0 0 0;
+setAttr "loc_left_ring_3.translateX" $distance_X_left_end ;
+setAttr "loc_left_ring_3.translateY" $distance_Y_left_end ;
+setAttr "loc_left_ring_3.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_ring_3Shape.overrideEnabled" 1;
+setAttr "loc_left_ring_3Shape.overrideColor" 21;
+select -r loc_left_ring_3 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator middle_1
+
+float $distance_X_left_end = $distance / 2.66;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / 64.31;
+
+spaceLocator -n loc_left_middle_1 -p 0 0 0;
+setAttr "loc_left_middle_1.translateX" $distance_X_left_end ;
+setAttr "loc_left_middle_1.translateY" $distance_Y_left_end ;
+setAttr "loc_left_middle_1.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_middle_1Shape.overrideEnabled" 1;
+setAttr "loc_left_middle_1Shape.overrideColor" 21;
+select -r loc_left_middle_1 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator middle_2
+
+float $distance_X_left_end = $distance / 2.45;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / 60.34;
+
+spaceLocator -n loc_left_middle_2 -p 0 0 0;
+setAttr "loc_left_middle_2.translateX" $distance_X_left_end ;
+setAttr "loc_left_middle_2.translateY" $distance_Y_left_end ;
+setAttr "loc_left_middle_2.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_middle_2Shape.overrideEnabled" 1;
+setAttr "loc_left_middle_2Shape.overrideColor" 21;
+select -r loc_left_middle_2 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator middle_3
+
+float $distance_X_left_end = $distance / 2.29;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / 60.34;
+
+spaceLocator -n loc_left_middle_3 -p 0 0 0;
+setAttr "loc_left_middle_3.translateX" $distance_X_left_end ;
+setAttr "loc_left_middle_3.translateY" $distance_Y_left_end ;
+setAttr "loc_left_middle_3.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_middle_3Shape.overrideEnabled" 1;
+setAttr "loc_left_middle_3Shape.overrideColor" 21;
+select -r loc_left_middle_3 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+
+// Create Locator index_1
+
+float $distance_X_left_end = $distance / 2.65;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / 38.46;
+
+spaceLocator -n loc_left_index_1 -p 0 0 0;
+setAttr "loc_left_index_1.translateX" $distance_X_left_end ;
+setAttr "loc_left_index_1.translateY" $distance_Y_left_end ;
+setAttr "loc_left_index_1.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_index_1Shape.overrideEnabled" 1;
+setAttr "loc_left_index_1Shape.overrideColor" 21;
+select -r loc_left_index_1 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+
+// Create Locator index_2
+
+float $distance_X_left_end = $distance / 2.45;
+float $distance_Y_left_end = $distance / 1.22;
+float $distance_Z_left_end = $distance / 34.38;
+
+spaceLocator -n loc_left_index_2 -p 0 0 0;
+setAttr "loc_left_index_2.translateX" $distance_X_left_end ;
+setAttr "loc_left_index_2.translateY" $distance_Y_left_end ;
+setAttr "loc_left_index_2.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_index_2Shape.overrideEnabled" 1;
+setAttr "loc_left_index_2Shape.overrideColor" 21;
+select -r loc_left_index_2 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator index_3
+
+float $distance_X_left_end = $distance / 2.32;
+float $distance_Y_left_end = $distance / 1.23;
+float $distance_Z_left_end = $distance / 33.09;
+
+spaceLocator -n loc_left_index_3 -p 0 0 0;
+setAttr "loc_left_index_3.translateX" $distance_X_left_end ;
+setAttr "loc_left_index_3.translateY" $distance_Y_left_end ;
+setAttr "loc_left_index_3.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_index_3Shape.overrideEnabled" 1;
+setAttr "loc_left_index_3Shape.overrideColor" 21;
+select -r loc_left_index_3 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator thumb_1
+
+float $distance_X_left_end = $distance / 2.7;
+float $distance_Y_left_end = $distance / 1.24;
+float $distance_Z_left_end = $distance / 36.42;
+
+spaceLocator -n loc_left_thumb_1 -p 0 0 0;
+setAttr "loc_left_thumb_1.translateX" $distance_X_left_end ;
+setAttr "loc_left_thumb_1.translateY" $distance_Y_left_end ;
+setAttr "loc_left_thumb_1.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_thumb_1Shape.overrideEnabled" 1;
+setAttr "loc_left_thumb_1Shape.overrideColor" 21;
+select -r loc_left_thumb_1 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator thumb_2
+
+float $distance_X_left_end = $distance / 2.59;
+float $distance_Y_left_end = $distance / 1.24;
+float $distance_Z_left_end = $distance / 25.07;
+
+spaceLocator -n loc_left_thumb_2 -p 0 0 0;
+setAttr "loc_left_thumb_2.translateX" $distance_X_left_end ;
+setAttr "loc_left_thumb_2.translateY" $distance_Y_left_end ;
+setAttr "loc_left_thumb_2.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_thumb_2Shape.overrideEnabled" 1;
+setAttr "loc_left_thumb_2Shape.overrideColor" 21;
+select -r loc_left_thumb_2 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+// Create Locator thumb_3
+
+float $distance_X_left_end = $distance / 2.49;
+float $distance_Y_left_end = $distance / 1.25;
+float $distance_Z_left_end = $distance / 20.48;
+
+spaceLocator -n loc_left_thumb_3 -p 0 0 0;
+setAttr "loc_left_thumb_3.translateX" $distance_X_left_end ;
+setAttr "loc_left_thumb_3.translateY" $distance_Y_left_end ;
+setAttr "loc_left_thumb_3.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_thumb_3Shape.overrideEnabled" 1;
+setAttr "loc_left_thumb_3Shape.overrideColor" 21;
+select -r loc_left_thumb_3 ;
+scale -r 3 3 3 ;
+select -cl  ;
+
+
+
+////////////////////////////////////////////
+//Right Arm 
+///////////////////////////////////////////
+
+
+// Create a window with a button
+string $window = `window -title "Check Arm and hand locator" -widthHeight 300 100`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Check and adjust the Locator position";
+text -label "Then click ok ";
+
+button -label "Continue to right arm " -command "deferredSym_Arm(); deleteUI $window;";
+
+// Show the window
+showWindow $window;
+
+// Function to execute the Symetrize leg locator and create spine to head locator
+global proc Sym_Arm() {
+		
+		eval( "source \"04_Sym_Arm\"" );
+
+}
+
+// Deferred function to be called when the button is pressed
+global proc deferredSym_Arm() {
+    // Execute the main code in the next idle event
+    evalDeferred("Sym_Arm");
+}

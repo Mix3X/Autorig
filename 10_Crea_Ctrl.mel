@@ -1,0 +1,1373 @@
+viewFit -all persp;
+//////Hide Locator
+select -r Locator_grp ;
+toggleVisibilityAndKeepSelection `optionVar -query toggleVisibilityAndKeepSelectionBehaviour`;
+select -cl  ;
+select -cl  ;
+select -r joint_right_thumb_3 ;
+joint -e  -oj none -ch -zso;
+
+
+select -cl  ;
+select -r joint_left_thumb_3 ;
+joint -e  -oj none -ch -zso;
+
+////////// Root Controller
+CreatePolygonType;
+setAttr "type1.fontSize" 19;
+
+string $root = "52 4f 4f 54 20 52 4f 4f 54 20 52 4f 4f 54 20 52 4f 4f 54" ;// Hex code for root root root root
+setAttr "type1.textInput" -type "string" $root ;
+
+Bend;
+setAttr "bend1Handle.rotateZ" -90;
+setAttr "bend1.curvature" 180;
+parent bend1Handle typeMesh1 ;
+select -r typeMesh1 ;
+convertTypeCapsToCurves;
+
+select -r typeMesh1 ;
+doDelete;
+select -cl  ;
+
+select -r polyToCurveShape28 ;
+select -add polyToCurveShape27 ;
+select -add polyToCurveShape26 ;
+select -add polyToCurveShape25 ;
+select -add polyToCurveShape24 ;
+select -add polyToCurveShape23 ;
+select -add polyToCurveShape22 ;
+select -add polyToCurveShape21 ;
+select -add polyToCurveShape20 ;
+select -add polyToCurveShape19 ;
+select -add polyToCurveShape18 ;
+select -add polyToCurveShape17 ;
+select -add polyToCurveShape16 ;
+select -add polyToCurveShape15 ;
+select -add polyToCurveShape14 ;
+select -add polyToCurveShape13 ;
+select -add polyToCurveShape12 ;
+select -add polyToCurveShape11 ;
+select -add polyToCurveShape10 ;
+select -add polyToCurveShape9 ;
+select -add polyToCurveShape8 ;
+select -add polyToCurveShape7 ;
+select -add polyToCurveShape6 ;
+select -add polyToCurveShape5 ;
+select -add polyToCurveShape4 ;
+select -add polyToCurveShape3 ;
+select -add polyToCurveShape2 ;
+select -add polyToCurve1 ;
+parent -r -s ;
+select -cl  ;
+
+select -r polyToCurve2 polyToCurve3 polyToCurve4 polyToCurve5 polyToCurve6 polyToCurve7 polyToCurve8 polyToCurve9 polyToCurve10 polyToCurve11 polyToCurve12 polyToCurve13 polyToCurve14 polyToCurve15 polyToCurve16 polyToCurve17 polyToCurve18 polyToCurve19 polyToCurve20 polyToCurve21 polyToCurve22 polyToCurve23 polyToCurve24 polyToCurve25 polyToCurve26 polyToCurve27 polyToCurve28 ;
+doDelete;
+
+select -r polyToCurve1 ;
+parent -w;
+select -cl  ;
+
+select -r typeMesh1Curves1 ;
+doDelete;
+select -cl  ;
+rename "polyToCurve1" "root_Ctrl";
+
+select -r root_Ctrl ;
+CenterPivot;
+
+
+
+// Define the object you want to get the local rotate rpot Y value of
+string $object = "root_Ctrl";
+
+// Query the local rotate rpot values of the object
+float $rpotValues[] = `xform -q -rp $object`;
+
+// Reverse the local rotate rpot values of the object
+float $rpotXValues = -$rpotValues[0] ;
+float $rpotYValues = -$rpotValues[1];
+
+
+setAttr "root_Ctrl.translateX" $rpotXValues;
+setAttr "root_Ctrl.translateY" $rpotYValues;
+
+setAttr "root_Ctrl.rotateX" -90;
+
+select -cl  ;
+select -r root_Ctrl ;
+FreezeTransformations;
+
+curve -d 1 -p 0 0 -4 -p -2 0 -3 -p -1 0 -3 -p -1 0 -1 -p -3 0 -1 -p -3 0 -2 -p -4 0 0 -p -3 0 2 -p -3 0 1 -p -1 0 1 -p -1 0 3 -p -2 0 3 -p 0 0 4 -p 2 0 3 -p 1 0 3 -p 1 0 1 -p 3 0 1 -p 3 0 2 -p 4 0 0 -p 3 0 -2 -p 3 0 -1 -p 1 0 -1 -p 1 0 -3 -p 2 0 -3 -p 0 0 -4 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 ;
+
+setAttr "curve1.scaleZ" 6;
+setAttr "curve1.scaleX" 6;
+setAttr "curve1.scaleY" 6;
+select -r curve1 ;
+FreezeTransformations;
+
+select -cl  ;
+select -r curveShape1 ;
+select -add root_Ctrl ;
+parent -r -s ;
+select -cl  ;
+select -r curve1 ;
+doDelete;
+
+setAttr "root_Ctrl.overrideEnabled" 1;
+setAttr "root_Ctrl.overrideColor" 17;
+
+float $rootScale = $distance / 60;
+setAttr "root_Ctrl.scaleZ" $rootScale;
+setAttr "root_Ctrl.scaleX" $rootScale;
+setAttr "root_Ctrl.scaleY" $rootScale;
+select -r root_Ctrl ;
+FreezeTransformations;
+/////////////////////////////
+////////////////////////////////
+/////////////////////////////////
+
+
+//////Left thig
+
+
+curve -name left_thig_FK_Ctrl -d 1 -p 0.5 0.5 0.5 -p 0.5 0.5 -0.5 -p -0.5 0.5 -0.5 -p -0.5 0.5 0.5 -p 0.5 0.5 0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 -0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+float $legscalex = $distance / 9 ;
+float $legscaley = $distance / 6.5 ;
+float $legscalez = $distance / 7.8 ;
+
+
+setAttr "left_thig_FK_Ctrl.scaleX" $legscalex;
+setAttr "left_thig_FK_Ctrl.scaleY" $legscaley;
+setAttr "left_thig_FK_Ctrl.scaleZ" $legscalez;
+
+float $position1[] = `pointPosition curveShape2.cv[0]`;
+float $position2[] = `pointPosition curveShape2.cv[1]`;
+float $position3[] = `pointPosition curveShape2.cv[2]`;
+float $position4[] = `pointPosition curveShape2.cv[3]`;
+
+float $offset = $distance / 17.5;
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     (($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4) + $offset,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] left_thig_FK_Ctrl;
+
+select -r left_thig_FK_Ctrl ;
+select -tgl joint_left_thig_FK ; 
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -cl  ;
+select -r left_thig_FK_Ctrl ;
+
+
+setAttr "left_thig_FK_Ctrl.overrideEnabled" 1;
+setAttr "left_thig_FK_Ctrl.overrideColor" 9;
+
+
+
+
+
+
+
+////////////////////right thig
+curve -name right_thig_FK_Ctrl -d 1 -p 0.5 0.5 0.5 -p 0.5 0.5 -0.5 -p -0.5 0.5 -0.5 -p -0.5 0.5 0.5 -p 0.5 0.5 0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 -0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+float $legscalex = $distance / 9 ;
+float $legscaley = $distance / 6.5 ;
+float $legscalez = $distance / 7.8 ;
+
+
+setAttr "right_thig_FK_Ctrl.scaleX" $legscalex;
+setAttr "right_thig_FK_Ctrl.scaleY" $legscaley;
+setAttr "right_thig_FK_Ctrl.scaleZ" $legscalez;
+
+float $position1[] = `pointPosition curveShape3.cv[0]`;
+float $position2[] = `pointPosition curveShape3.cv[1]`;
+float $position3[] = `pointPosition curveShape3.cv[2]`;
+float $position4[] = `pointPosition curveShape3.cv[3]`;
+
+float $offset = $distance / 17.5;
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     (($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4) + $offset,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] right_thig_FK_Ctrl;
+
+select -r right_thig_FK_Ctrl ;
+select -tgl joint_right_thig_FK ; ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -cl  ;
+select -r right_thig_FK_Ctrl ;
+
+
+setAttr "right_thig_FK_Ctrl.overrideEnabled" 1;
+setAttr "right_thig_FK_Ctrl.overrideColor" 28;
+
+////////////////////Left leg
+curve -name left_leg_FK_Ctrl -d 1 -p 0.5 0.5 0.5 -p 0.5 0.5 -0.5 -p -0.5 0.5 -0.5 -p -0.5 0.5 0.5 -p 0.5 0.5 0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 -0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+float $legscalex = $distance / 9 ;
+float $legscaley = $distance / 6.5 ;
+float $legscalez = $distance / 7.8 ;
+
+
+setAttr "left_leg_FK_Ctrl.scaleX" $legscalex;
+setAttr "left_leg_FK_Ctrl.scaleY" $legscaley;
+setAttr "left_leg_FK_Ctrl.scaleZ" $legscalez;
+
+float $position1[] = `pointPosition curveShape4.cv[0]`;
+float $position2[] = `pointPosition curveShape4.cv[1]`;
+float $position3[] = `pointPosition curveShape4.cv[2]`;
+float $position4[] = `pointPosition curveShape4.cv[3]`;
+
+float $offset = $distance / 40;
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     (($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4) + $offset,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] left_leg_FK_Ctrl;
+
+select -r left_leg_FK_Ctrl ;
+select -tgl joint_left_leg_FK ; ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -cl  ;
+select -r left_leg_FK_Ctrl ;
+
+
+setAttr "left_leg_FK_Ctrl.overrideEnabled" 1;
+setAttr "left_leg_FK_Ctrl.overrideColor" 9;
+
+////////////////////Right leg
+curve -name right_leg_FK_Ctrl -d 1 -p 0.5 0.5 0.5 -p 0.5 0.5 -0.5 -p -0.5 0.5 -0.5 -p -0.5 0.5 0.5 -p 0.5 0.5 0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 -0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+float $legscalex = $distance / 9 ;
+float $legscaley = $distance / 6.5 ;
+float $legscalez = $distance / 7.8 ;
+
+
+setAttr "right_leg_FK_Ctrl.scaleX" $legscalex;
+setAttr "right_leg_FK_Ctrl.scaleY" $legscaley;
+setAttr "right_leg_FK_Ctrl.scaleZ" $legscalez;
+
+float $position1[] = `pointPosition curveShape5.cv[0]`;
+float $position2[] = `pointPosition curveShape5.cv[1]`;
+float $position3[] = `pointPosition curveShape5.cv[2]`;
+float $position4[] = `pointPosition curveShape5.cv[3]`;
+
+float $offset = $distance / 40;
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     (($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4) + $offset,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] right_leg_FK_Ctrl;
+
+select -r right_leg_FK_Ctrl ;
+select -tgl joint_right_leg_FK ; ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -cl  ;
+select -r right_leg_FK_Ctrl ;
+
+
+setAttr "right_leg_FK_Ctrl.overrideEnabled" 1;
+setAttr "right_leg_FK_Ctrl.overrideColor" 28;
+
+
+
+//////////////Right feet
+
+curve -name right_feet_Ctrl -d 1 -p -8.057908 6.924011 -6.924011 -p 8.057905 6.924011 -6.924011 -p 8.057905 6.924011 10.729364 -p -8.057908 6.924011 10.729364 -p -8.057908 6.924011 -6.924011 -p -8.057908 -6.924012 -6.924011 -p -8.057908 -6.924012 26.071245 -p -8.057908 -3.389002 26.071245 -p -8.057908 6.924011 10.729364 -p 8.057905 6.924011 10.729364 -p 8.057905 -3.389002 26.071245 -p -8.057908 -3.389002 26.071245 -p -8.057908 -6.924012 26.071245 -p 8.057905 -6.924012 26.071245 -p 8.057905 -3.389002 26.071245 -p 8.057905 6.924011 10.729364 -p 8.057905 6.924011 -6.924011 -p 8.057905 -6.924012 -6.924011 -p 8.057905 -6.924012 26.071245 -p 8.057905 -6.924012 -6.924011 -p -8.057908 -6.924012 -6.924011 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+
+
+select -r loc_right_foot ;
+select -tgl loc_right_toes ;
+select -tgl right_feet_Ctrl ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -cl  ;
+select -r right_feet_Ctrl_pointConstraint1 ;
+doDelete;
+
+select -cl  ;
+select -r right_feet_Ctrl ;
+
+
+setAttr "right_feet_Ctrl.overrideEnabled" 1;
+setAttr "right_feet_Ctrl.overrideColor" 28;
+
+FreezeTransformations;
+DeleteHistory;
+
+float $position1[] = `pointPosition curveShape6.cv[0]`;
+float $position2[] = `pointPosition curveShape6.cv[1]`;
+float $position3[] = `pointPosition curveShape6.cv[2]`;
+float $position4[] = `pointPosition curveShape6.cv[3]`;
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     ($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] right_feet_Ctrl;
+select -cl  ;
+select -r right_feet_Ctrl  ;
+select -tgl joint_right_foot ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+//////////////left feet
+curve -name left_feet_Ctrl -d 1 -p -8.057908 6.924011 -6.924011 -p 8.057905 6.924011 -6.924011 -p 8.057905 6.924011 10.729364 -p -8.057908 6.924011 10.729364 -p -8.057908 6.924011 -6.924011 -p -8.057908 -6.924012 -6.924011 -p -8.057908 -6.924012 26.071245 -p -8.057908 -3.389002 26.071245 -p -8.057908 6.924011 10.729364 -p 8.057905 6.924011 10.729364 -p 8.057905 -3.389002 26.071245 -p -8.057908 -3.389002 26.071245 -p -8.057908 -6.924012 26.071245 -p 8.057905 -6.924012 26.071245 -p 8.057905 -3.389002 26.071245 -p 8.057905 6.924011 10.729364 -p 8.057905 6.924011 -6.924011 -p 8.057905 -6.924012 -6.924011 -p 8.057905 -6.924012 26.071245 -p 8.057905 -6.924012 -6.924011 -p -8.057908 -6.924012 -6.924011 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+
+
+select -r loc_left_foot ;
+select -tgl loc_left_toes ;
+select -tgl left_feet_Ctrl ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -cl  ;
+select -r left_feet_Ctrl_pointConstraint1 ;
+doDelete;
+
+select -cl  ;
+select -r left_feet_Ctrl ;
+
+
+setAttr "left_feet_Ctrl.overrideEnabled" 1;
+setAttr "left_feet_Ctrl.overrideColor" 9;
+select -cl  ;
+select -r left_feet_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+float $position1[] = `pointPosition curveShape7.cv[0]`;
+float $position2[] = `pointPosition curveShape7.cv[1]`;
+float $position3[] = `pointPosition curveShape7.cv[2]`;
+float $position4[] = `pointPosition curveShape7.cv[3]`;
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     ($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] left_feet_Ctrl;
+
+select -cl  ;
+select -r left_feet_Ctrl  ;
+select -tgl joint_left_foot ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+////////// hip Controller
+
+
+circle -name hip_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; 
+scale -r 49.480496 49.480496 49.480496 ;
+select -r hip_Ctrl.cv[6] ;
+select -r hip_Ctrl.cv[5] ;
+select -tgl hip_Ctrl.cv[1] ;
+move -r -os -wd 0 -21.124433 0 ;
+select -r hip_Ctrl.cv[7] ;
+select -tgl hip_Ctrl.cv[3] ;
+scale -r -p 0cm 0cm 0cm 0.705442 1 1 ;
+select -cl  ;
+select -r hip_Ctrl ;
+
+select -cl  ;
+select -r loc_left_thig ;
+select -tgl loc_right_thig ;
+select -tgl hip_Ctrl ;
+doCreatePointConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -cl  ;
+select -r hip_Ctrl_pointConstraint1 ;
+doDelete;
+
+float $hipscalex = $distance / 5.78 ;
+float $hipscaley = $distance / 8.39 ;
+float $hipscalez = $distance / 10.21 ;
+
+setAttr "hip_Ctrl.scaleX" $hipscalex;
+setAttr "hip_Ctrl.scaleY" $hipscaley;
+setAttr "hip_Ctrl.scaleZ" $hipscalez;
+
+setAttr "hip_Ctrl.overrideEnabled" 1;
+setAttr "hip_Ctrl.overrideColor" 13;
+
+select -cl  ;
+select -r hip_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+
+////////// Spine 1 Controller
+circle -name spine_1_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+
+select -r spine_1_Ctrl ;
+select -tgl loc_Spine_1 ;
+matchTransform;
+
+
+float $spine_1_scalex = $distance / 8.5 ;
+float $spine_1_scalez = $distance / 9.2 ;
+
+
+setAttr "spine_1_Ctrl.scaleX" $spine_1_scalex;
+setAttr "spine_1_Ctrl.scaleZ" $spine_1_scalez;
+
+setAttr "spine_1_Ctrl.overrideEnabled" 1;
+setAttr "spine_1_Ctrl.overrideColor" 20;
+
+select -cl  ;
+select -r spine_1_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+
+////////// Spine 2 Controller
+circle -name spine_2_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+
+select -r spine_2_Ctrl ;
+select -tgl loc_Spine_2 ;
+matchTransform;
+
+hilite -r spine_2_Ctrl ;
+select -r spine_2_Ctrl.cv[6] ;
+select -tgl spine_2_Ctrl.cv[2] ;
+select -tgl spine_2_Ctrl.cv[4] ;
+select -tgl spine_2_Ctrl.cv[0] ;
+scale -r -p 0cm 116.883117cm 0cm 0.718419 1 0.718419 ;
+
+float $spine_2_scalex = $distance / 8.5 ;
+float $spine_2_scalez = $distance / 9.2 ;
+
+
+setAttr "spine_2_Ctrl.scaleX" $spine_2_scalex;
+setAttr "spine_2_Ctrl.scaleZ" $spine_2_scalez;
+
+setAttr "spine_2_Ctrl.overrideEnabled" 1;
+setAttr "spine_2_Ctrl.overrideColor" 20;
+
+select -cl  ;
+select -r spine_2_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+
+////////// Spine 3 Controller
+
+circle -name spine_3_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+
+hilite spine_3_Ctrl ;
+select -r spine_3_Ctrl.cv[7] ;
+select -tgl spine_3_Ctrl.cv[3] ;
+scale -r -p 0cm 130.434783cm 0cm 0.664048 1 1 ;
+select -r spine_3_Ctrl.cv[5] ;
+select -tgl spine_3_Ctrl.cv[1] ;
+scale -r -p 0cm 130.434783cm 0cm 1 1 0.660632 ;
+
+select -r spine_3_Ctrl ;
+select -tgl loc_Spine_3 ;
+matchTransform;
+
+
+float $spine_3_scalex = $distance / 6.3 ;
+float $spine_3_scalez = $distance / 5.97 ;
+
+
+setAttr "spine_3_Ctrl.scaleX" $spine_3_scalex;
+setAttr "spine_3_Ctrl.scaleZ" $spine_3_scalez;
+
+setAttr "spine_3_Ctrl.overrideEnabled" 1;
+setAttr "spine_3_Ctrl.overrideColor" 20;
+
+select -cl  ;
+select -r spine_3_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+
+////////// Spine 4 Controller
+
+circle -name spine_4_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; 
+
+select -r spine_4_Ctrl ;
+select -tgl loc_Spine_4 ;
+matchTransform;
+
+float $spine_4scalex = $distance / 8.6 ;
+float $spine_4scalez = $distance / 8.6 ;
+
+
+setAttr "spine_4_Ctrl.scaleX" $spine_4scalex;
+setAttr "spine_4_Ctrl.scaleZ" $spine_4scalez;
+
+select -r spine_4_Ctrl ;
+hilite spine_4_Ctrl ;
+select -r spine_4_Ctrl.cv[5] ;
+select -tgl spine_4_Ctrl.cv[1] ;
+move -r -os -wd 0 -16.444238 0 ;
+
+select -r spine_4_Ctrl.cv[7] ;
+select -tgl spine_4_Ctrl.cv[3] ;
+move -r -os -wd 0 4.166656 0 ;
+scale -r -p 0cm 154.166656cm -3.900325cm 1.064846 1 1 ;
+
+select -r spine_4_Ctrl.cv[0:2] ;
+scale -r -p 0cm 141.777881cm -23.764286cm 1 1 1e-05 ;
+move -r -os -wd 0 0 7.951853 ;
+
+select -r spine_4_Ctrl.cv[4] ;
+select -tgl spine_4_Ctrl.cv[6] ;
+scale -r -p 0cm 150cm 12.555519cm 0.589405 1 1 ;
+move -r -os -wd 0 3.930952 0 ;
+scale -r -p 0cm 153.930952cm 12.555519cm 1.200533 1 1 ;
+move -r -os -wd 0 -6.291785 -3.228628 ;
+
+select -r spine_4_Ctrl.cv[5] ;
+move -r -os -wd 0 0 -0.287055 ;
+move -r -os -wd 0 4.655957 0 ;
+
+
+setAttr "spine_4_Ctrl.overrideEnabled" 1;
+setAttr "spine_4_Ctrl.overrideColor" 13;
+select -cl  ;
+select -r spine_4_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+/////////////////// Left shoulder FK
+curve -name shoulder_left_FK_Ctrl -d 1 -p -22.480434 14.460243 7.138519 -p 22.480434 14.460243 7.138519 -p 22.480434 14.460243 -7.138519 -p -22.480434 14.460243 -7.138519 -p -22.480434 14.460243 7.138519 -p -22.480434 0.183206 7.138519 -p 22.480434 0.183206 7.138519 -p 22.480434 14.460243 7.138519 -p 22.480434 14.460243 -7.138519 -p 22.480434 0.183206 -7.138519 -p 22.480434 0.183206 7.138519 -p -22.480434 0.183206 7.138519 -p -22.480434 0.183206 -7.138519 -p 22.480434 0.183206 -7.138519 -p 22.480434 14.460243 -7.138519 -p -22.480434 14.460243 -7.138519 -p -22.480434 0.183206 -7.138519 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+
+float $shoulderscalex = $distance / 375 ;
+float $shoulderscaley = $distance / 180 ;
+float $shoulderscalez = $distance / 180 ;
+
+setAttr "shoulder_left_FK_Ctrl.scaleX" $shoulderscalex;
+setAttr "shoulder_left_FK_Ctrl.scaleY" $shoulderscaley;
+setAttr "shoulder_left_FK_Ctrl.scaleZ" $shoulderscalez;
+
+
+float $position1[] = `pointPosition curveShape8.cv[0]`;
+float $position2[] = `pointPosition curveShape8.cv[3]`;
+float $position3[] = `pointPosition curveShape8.cv[5]`;
+float $position4[] = `pointPosition curveShape8.cv[12]`;
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     ($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] shoulder_left_FK_Ctrl;
+
+select -r shoulder_left_FK_Ctrl ;
+select -tgl joint_left_shoulder_FK ; ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -cl  ;
+select -r shoulder_left_FK_Ctrl ;
+
+
+setAttr "shoulder_left_FK_Ctrl.overrideEnabled" 1;
+setAttr "shoulder_left_FK_Ctrl.overrideColor" 9;
+
+//////////// right shoulder FK
+curve -name shoulder_right_FK_Ctrl -d 1 -p -22.480434 14.460243 7.138519 -p 22.480434 14.460243 7.138519 -p 22.480434 14.460243 -7.138519 -p -22.480434 14.460243 -7.138519 -p -22.480434 14.460243 7.138519 -p -22.480434 0.183206 7.138519 -p 22.480434 0.183206 7.138519 -p 22.480434 14.460243 7.138519 -p 22.480434 14.460243 -7.138519 -p 22.480434 0.183206 -7.138519 -p 22.480434 0.183206 7.138519 -p -22.480434 0.183206 7.138519 -p -22.480434 0.183206 -7.138519 -p 22.480434 0.183206 -7.138519 -p 22.480434 14.460243 -7.138519 -p -22.480434 14.460243 -7.138519 -p -22.480434 0.183206 -7.138519 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+
+float $shoulderscalex = $distance / 375 ;
+float $shoulderscaley = $distance / 180 ;
+float $shoulderscalez = $distance / 180 ;
+
+setAttr "shoulder_right_FK_Ctrl.scaleX" $shoulderscalex;
+setAttr "shoulder_right_FK_Ctrl.scaleY" $shoulderscaley;
+setAttr "shoulder_right_FK_Ctrl.scaleZ" $shoulderscalez;
+
+
+float $position1[] = `pointPosition curveShape9.cv[1]`;
+float $position2[] = `pointPosition curveShape9.cv[2]`;
+float $position3[] = `pointPosition curveShape9.cv[6]`;
+float $position4[] = `pointPosition curveShape9.cv[9]`;
+
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     ($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] shoulder_right_FK_Ctrl;
+
+select -r shoulder_right_FK_Ctrl ;
+select -tgl joint_right_shoulder_FK ; ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -cl  ;
+select -r shoulder_right_FK_Ctrl ;
+
+
+setAttr "shoulder_right_FK_Ctrl.overrideEnabled" 1;
+setAttr "shoulder_right_FK_Ctrl.overrideColor" 28;
+
+///////////////////////// right forearm
+curve -name forearm_right_FK_Ctrl -d 1 -p -22.480434 14.460243 7.138519 -p 22.480434 14.460243 7.138519 -p 22.480434 14.460243 -7.138519 -p -22.480434 14.460243 -7.138519 -p -22.480434 14.460243 7.138519 -p -22.480434 0.183206 7.138519 -p 22.480434 0.183206 7.138519 -p 22.480434 14.460243 7.138519 -p 22.480434 14.460243 -7.138519 -p 22.480434 0.183206 -7.138519 -p 22.480434 0.183206 7.138519 -p -22.480434 0.183206 7.138519 -p -22.480434 0.183206 -7.138519 -p 22.480434 0.183206 -7.138519 -p 22.480434 14.460243 -7.138519 -p -22.480434 14.460243 -7.138519 -p -22.480434 0.183206 -7.138519 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+
+float $forearmscalex = $distance / 375 ;
+float $forearmscaley = $distance / 180 ;
+float $forearmscalez = $distance / 180 ;
+
+setAttr "forearm_right_FK_Ctrl.scaleX" $forearmscalex;
+setAttr "forearm_right_FK_Ctrl.scaleY" $forearmscaley;
+setAttr "forearm_right_FK_Ctrl.scaleZ" $forearmscalez;
+
+
+float $position1[] = `pointPosition curveShape10.cv[1]`;
+float $position2[] = `pointPosition curveShape10.cv[2]`;
+float $position3[] = `pointPosition curveShape10.cv[6]`;
+float $position4[] = `pointPosition curveShape10.cv[9]`;
+
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     ($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] forearm_right_FK_Ctrl;
+
+select -r forearm_right_FK_Ctrl ;
+select -tgl joint_right_forearm_FK ; ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -cl  ;
+select -r forearm_right_FK_Ctrl ;
+
+
+setAttr "forearm_right_FK_Ctrl.overrideEnabled" 1;
+setAttr "forearm_right_FK_Ctrl.overrideColor" 28;
+
+//////////////////left forearm
+curve -name forearm_left_FK_Ctrl -d 1 -p -22.480434 14.460243 7.138519 -p 22.480434 14.460243 7.138519 -p 22.480434 14.460243 -7.138519 -p -22.480434 14.460243 -7.138519 -p -22.480434 14.460243 7.138519 -p -22.480434 0.183206 7.138519 -p 22.480434 0.183206 7.138519 -p 22.480434 14.460243 7.138519 -p 22.480434 14.460243 -7.138519 -p 22.480434 0.183206 -7.138519 -p 22.480434 0.183206 7.138519 -p -22.480434 0.183206 7.138519 -p -22.480434 0.183206 -7.138519 -p 22.480434 0.183206 -7.138519 -p 22.480434 14.460243 -7.138519 -p -22.480434 14.460243 -7.138519 -p -22.480434 0.183206 -7.138519 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+
+float $forearmscalex = $distance / 375 ;
+float $forearmscaley = $distance / 180 ;
+float $forearmscalez = $distance / 180 ;
+
+setAttr "forearm_left_FK_Ctrl.scaleX" $forearmscalex;
+setAttr "forearm_left_FK_Ctrl.scaleY" $forearmscaley;
+setAttr "forearm_left_FK_Ctrl.scaleZ" $forearmscalez;
+
+
+float $position1[] = `pointPosition curveShape11.cv[0]`;
+float $position2[] = `pointPosition curveShape11.cv[3]`;
+float $position3[] = `pointPosition curveShape11.cv[5]`;
+float $position4[] = `pointPosition curveShape11.cv[12]`;
+
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     ($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot point
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] forearm_left_FK_Ctrl;
+
+select -r forearm_left_FK_Ctrl ;
+select -tgl joint_left_forearm_FK ; ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -cl  ;
+select -r forearm_left_FK_Ctrl ;
+
+
+setAttr "forearm_left_FK_Ctrl.overrideEnabled" 1;
+setAttr "forearm_left_FK_Ctrl.overrideColor" 9;
+
+////////////hand and finger Ctrl
+
+circle -name right_hand_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 15 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+select -cl  ;
+select -r right_hand_Ctrl ;
+curve -d 1 -p 1 0 -1 -p -1 0 0 -p 1 0 1 -p 1 0 -1 -k 0 -k 1 -k 2 -k 3 ;
+curve -d 1 -p -1 0 -1 -p 1 0 -1 -p 0 0 1 -p -1 0 -1 -k 0 -k 1 -k 2 -k 3 ;
+curve -d 1 -p -1 0 -1 -p -1 0 1 -p 1 0 0 -p -1 0 -1 -k 0 -k 1 -k 2 -k 3 ;
+curve -d 1 -p -1 0 1 -p 1 0 1 -p 0 0 -1 -p -1 0 1 -k 0 -k 1 -k 2 -k 3 ;
+
+setAttr "curve1.translateZ" -15;
+setAttr "curve2.translateX" -15;
+setAttr "curve3.translateZ" 15;
+setAttr "curve4.translateX" 15;
+
+select -r curve4 curve3 curve2 curve1 ;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+select -r curveShape15 ;
+select -add curveShape14 ;
+select -add curveShape13 ;
+select -add curveShape12 ;
+select -add right_hand_Ctrl ;
+parent -r -s ;
+
+select -r curve1 curve2 curve3 curve4 ;
+doDelete;
+
+select -r right_hand_Ctrl ;
+select -tgl joint_right_hand ;
+MatchTransform;
+select -cl  ;
+select -r right_hand_Ctrl ;
+rotate -r -os -fo 0 0 90 ;
+select -cl  ;
+
+setAttr "right_hand_Ctrl.overrideEnabled" 1;
+setAttr "right_hand_Ctrl.overrideColor" 30;
+select -cl  ;
+select -r right_hand_Ctrl ;
+python("import bake_to_opm");
+python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+
+circle -name left_hand_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r 15 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+select -cl  ;
+select -r right_hand_Ctrl ;
+curve -d 1 -p 1 0 -1 -p -1 0 0 -p 1 0 1 -p 1 0 -1 -k 0 -k 1 -k 2 -k 3 ;
+curve -d 1 -p -1 0 -1 -p 1 0 -1 -p 0 0 1 -p -1 0 -1 -k 0 -k 1 -k 2 -k 3 ;
+curve -d 1 -p -1 0 -1 -p -1 0 1 -p 1 0 0 -p -1 0 -1 -k 0 -k 1 -k 2 -k 3 ;
+curve -d 1 -p -1 0 1 -p 1 0 1 -p 0 0 -1 -p -1 0 1 -k 0 -k 1 -k 2 -k 3 ;
+
+setAttr "curve1.translateZ" -15;
+setAttr "curve2.translateX" -15;
+setAttr "curve3.translateZ" 15;
+setAttr "curve4.translateX" 15;
+
+select -r curve4 curve3 curve2 curve1 ;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+
+select -r curveShape16 ;
+select -add curveShape17 ;
+select -add curveShape18 ;
+select -add curveShape19 ;
+select -add left_hand_Ctrl ;
+parent -r -s ;
+
+select -r curve1 curve2 curve3 curve4 ;
+doDelete;
+
+select -cl  ;
+select -r left_hand_Ctrl ;
+select -tgl joint_left_hand ;
+MatchTransform;
+select -cl  ;
+select -r left_hand_Ctrl ;
+rotate -r -os -fo 0 0 90 ;
+select -cl  ;
+
+setAttr "left_hand_Ctrl.overrideEnabled" 1;
+setAttr "left_hand_Ctrl.overrideColor" 29;
+
+select -cl  ;
+select -r left_hand_Ctrl ;
+python("import bake_to_opm");
+python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+
+
+// List of joint names
+string $jointList[] = {"joint_left_thumb_1", "joint_left_thumb_2", "joint_left_thumb_3", "joint_left_index_1", "joint_left_index_2", "joint_left_index_3", "joint_left_middle_1", "joint_left_middle_2", "joint_left_middle_3", "joint_left_ring_1", "joint_left_ring_2", "joint_left_ring_3", "joint_left_pinkie_1", "joint_left_pinkie_2", "joint_left_pinkie_3", "joint_right_thumb_1", "joint_right_thumb_2", "joint_right_thumb_3", "joint_right_index_1", "joint_right_index_2", "joint_right_index_3", "joint_right_middle_1", "joint_right_middle_2", "joint_right_middle_3", "joint_right_ring_1", "joint_right_ring_2", "joint_right_ring_3", "joint_right_pinkie_1", "joint_right_pinkie_2", "joint_right_pinkie_3"}; 
+// Loop through each joint
+select -cl  ;
+for ($jointName in $jointList) {
+    // Check if the joint exists
+    if (`objExists $jointName`) {
+
+		circle -name circlefinger -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; 
+		curve -name linefinger -d 1 -p 0 0 0 -p 0 0 3 -k 0 -k 1 ;
+		string $lineName = ( stringRemovePrefix( $jointName, "joint_" ) + "_line_shape" );
+		rename "curveShape20" $lineName;
+		select -cl  ;
+		select -r $lineName ;
+		select -add circlefinger ;
+		parent -r -s;
+		select -r linefinger ;
+		doDelete;
+		move -r 0 0 3.5 circlefinger.scalePivot circlefinger.rotatePivot ;
+		select -r circlefinger ;
+		rotate -r -os -fo 0 -90 90 ;
+		FreezeTransformations;
+		string $ctrlName = ( stringRemovePrefix( $jointName, "joint_" ) + "_Ctrl" );
+		rename "circlefinger" $ctrlName;
+		string $ovrdName = ( $ctrlName + ".overrideEnabled" );
+		string $ovrdColor = ( $ctrlName + ".overrideColor" );
+		setAttr $ovrdName 1;
+		setAttr $ovrdColor 20;
+		select -r $ctrlName ;
+		select -tgl $jointName ;
+		matchTransform;
+		select -cl  ;
+		select -r $ctrlName ;
+		python("import bake_to_opm");
+		python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+		select -cl  ;
+
+        // Print a message to confirm
+        print ("Ctrl created at the position of " + $jointName + "\n");
+    } else {
+        // Print an error message if the locator doesn't exist
+        warning ("Locator " + $jointName + " not found.\n");
+    }
+}
+
+
+
+//////Head
+
+
+curve -name head_Ctrl -d 1 -p 0.5 0.5 0.5 -p 0.5 0.5 -0.5 -p -0.5 0.5 -0.5 -p -0.5 0.5 0.5 -p 0.5 0.5 0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 -0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p -0.5 -0.5 0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+float $headscalex = $distance / 9 ;
+float $headscaley = $distance / 6.5 ;
+float $headscalez = $distance / 7.8 ;
+
+
+setAttr "head_Ctrl.scaleX" $headscalex;
+setAttr "head_Ctrl.scaleY" $headscaley;
+setAttr "head_Ctrl.scaleZ" $headscalez;
+
+
+
+float $position1[] = `pointPosition curveShape20.cv[6]`;
+float $position2[] = `pointPosition curveShape20.cv[5]`;
+float $position3[] = `pointPosition curveShape20.cv[9]`;
+float $position4[] = `pointPosition curveShape20.cv[12]`;
+
+
+// Calculate the average of the four positions to set as the new pivot point
+float $newPivot[] = {($position1[0] + $position2[0] + $position3[0] + $position4[0]) / 4,
+                     ($position1[1] + $position2[1] + $position3[1] + $position4[1]) / 4,
+                     ($position1[2] + $position2[2] + $position3[2] + $position4[2]) / 4};
+
+// Move the pivot point of the selected object to the new pivot poi
+xform -ws -piv $newPivot[0] $newPivot[1] $newPivot[2] head_Ctrl;
+
+select -cl  ;
+select -r head_Ctrl ;
+select -tgl joint_neck ;
+MatchTranslation;
+
+select -cl  ;
+select -r head_Ctrl ;
+
+setAttr "head_Ctrl.overrideEnabled" 1;
+setAttr "head_Ctrl.overrideColor" 20;
+
+FreezeTransformations;
+DeleteHistory;
+
+
+
+////// Pec
+float $pecradius = $distance / 12;
+circle -name left_pec_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r $pecradius -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+setAttr "left_pec_Ctrl.rotateX" 90;
+select -r left_pec_Ctrl ;
+select -tgl joint_pec_left ;
+MatchTranslation;
+select -cl  ;
+select -r left_pec_Ctrl ;
+move -r -os -wd 0 3.944176 0 ;
+
+
+
+hilite left_pec_Ctrl ;
+select -r left_pec_Ctrl.cv[4] ;
+move -r -os -wd 5.466259 0 -7.36127 ;
+select -r left_pec_Ctrl.cv[5] ;
+move -r -os -wd 0.718342 0 -10.24884 ;
+select -r left_pec_Ctrl.cv[6] ;
+move -r -os -wd -6.953758 0 -9.283579 ;
+select -r left_pec_Ctrl.cv[7] ;
+move -r -os -wd -11.904243 0 -4.555666 ;
+select -r left_pec_Ctrl.cv[3] ;
+move -r -os -wd 5.488393 0 -0.965685 ;
+select -r left_pec_Ctrl.cv[2] ;
+move -r -os -wd 4.671454 0 2.798946 ;
+select -r left_pec_Ctrl.cv[1] ;
+move -r -os -wd 0.1895 0 4.400978 ;
+select -r left_pec_Ctrl.cv[0] ;
+move -r -os -wd -6.454936 0 0.699783 ;
+
+//select -cl  ;
+//select -r left_pec_Ctrl ;
+//move -r -os -wd 0 14 0;
+
+
+select -cl  ;
+select -r left_pec_Ctrl ;
+duplicate -rr; scale -r -1 1 1;
+rename "left_pec_Ctrl1" "right_pec_Ctrl";
+select -r right_pec_Ctrl ;
+select -tgl joint_pec_right ;
+MatchTranslation;
+
+select -r right_pec_Ctrl ;
+move -r -os -wd 0 3.944176 0 ;
+
+setAttr "left_pec_CtrlShape.overrideEnabled" 1;
+setAttr "left_pec_CtrlShape.overrideColor" 9;
+
+setAttr "right_pec_CtrlShape.overrideEnabled" 1;
+setAttr "right_pec_CtrlShape.overrideColor" 28;
+
+select -cl  ;
+select -r left_pec_Ctrl ;
+FreezeTransformations;
+
+
+select -cl  ;
+select -r right_pec_Ctrl ;
+FreezeTransformations;
+
+/////////////Clavicle
+float $clavradius = $distance / 18;
+circle -name left_clavicle_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r $clavradius -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+setAttr "left_clavicle_Ctrl.rotateX" 90;
+setAttr "left_clavicle_Ctrl.rotateZ" -30;
+select -r left_clavicle_Ctrl ;
+select -tgl joint_clavicle_left ;
+MatchTranslation;
+select -cl  ;
+select -r left_clavicle_Ctrl ;
+move -r -os -wd 0 9.789056 0 ;
+hilite left_clavicle_Ctrl ;
+select -r left_clavicle_Ctrl.cv[6] ;
+select -tgl left_clavicle_Ctrl.cv[4] ;
+select -tgl left_clavicle_Ctrl.cv[3] ;
+select -tgl left_clavicle_Ctrl.cv[7] ;
+scale -r -p 3.261047cm 143.140765cm 9.789056cm 1e-05 1 1 ;
+setAttr "left_clavicle_Ctrl.rotateX" 120;
+setAttr "left_clavicle_Ctrl.rotateZ" -30;
+setAttr "left_clavicle_CtrlShape.overrideEnabled" 1;
+setAttr "left_clavicle_CtrlShape.overrideColor" 9;
+select -cl  ;
+select -r left_clavicle_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+
+float $clavradius = $distance / 18;
+circle -name right_clavicle_Ctrl -c 0 0 0 -nr 0 1 0 -sw 360 -r $clavradius -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+setAttr "right_clavicle_Ctrl.rotateX" 90;
+select -r right_clavicle_Ctrl ;
+select -tgl joint_clavicle_right ;
+MatchTranslation;
+select -cl  ;
+select -r right_clavicle_Ctrl ;
+move -r -os -wd 0 9.789056 0 ;
+hilite right_clavicle_Ctrl ;
+select -r right_clavicle_Ctrl.cv[6] ;
+select -tgl right_clavicle_Ctrl.cv[4] ;
+select -tgl right_clavicle_Ctrl.cv[3] ;
+select -tgl right_clavicle_Ctrl.cv[7] ;
+scale -r -p -3.261047cm 143.140765cm 9.789056cm 1e-05 1 1  ;
+setAttr "right_clavicle_Ctrl.rotateX" 120;
+setAttr "right_clavicle_Ctrl.rotateZ" 30;
+setAttr "right_clavicle_CtrlShape.overrideEnabled" 1;
+setAttr "right_clavicle_CtrlShape.overrideColor" 28;
+select -cl  ;
+select -r right_clavicle_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+
+// Get the world position of the selected joint
+float $worldPosition[] = `xform -q -ws -t joint_clavicle_left`;
+
+// Move the rpot point of the selected object to the new rpot point
+xform -ws -rp $worldPosition[0] $worldPosition[1] $worldPosition[2] left_clavicle_Ctrl;
+
+// Get the world position of the selected joint
+float $worldPosition[] = `xform -q -ws -t joint_clavicle_right`;
+
+// Move the rpot point of the selected object to the new rpot point
+xform -ws -rp $worldPosition[0] $worldPosition[1] $worldPosition[2] right_clavicle_Ctrl;
+
+//////// Right Wrist IK
+
+curve -name right_Wrist_IK_Ctrl -d 1 -p 0 0 -7 -p -2 0 -5 -p -1 0 -5 -p -1 0 -3 -p -3 0 -1 -p -5 0 -1 -p -5 0 -2 -p -7 0 0 -p -5 0 2 -p -5 0 1 -p -3 0 1 -p -1 0 3 -p -1 0 5 -p -2 0 5 -p 0 0 7 -p 2 0 5 -p 1 0 5 -p 1 0 3 -p 3 0 1 -p 5 0 1 -p 5 0 2 -p 7 0 0 -p 5 0 -2 -p 5 0 -1 -p 3 0 -1 -p 1 0 -3 -p 1 0 -5 -p 2 0 -5 -p 0 0 -7 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 -k 25 -k 26 -k 27 -k 28 ;
+
+select -r right_Wrist_IK_Ctrl ;
+select -tgl joint_right_hand ;
+MatchTransform;
+
+select -cl  ;
+select -r right_Wrist_IK_Ctrl ;
+rotate -r -os -fo 0 0 -90 ;
+select -r right_Wrist_IK_Ctrl ;
+scale -r 2 2 2 ;
+setAttr "right_Wrist_IK_Ctrl.overrideEnabled" 1;
+setAttr "right_Wrist_IK_Ctrl.overrideColor" 28;
+select -cl  ;
+select -r right_Wrist_IK_Ctrl ;
+python("import bake_to_opm");
+python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+
+//////// Right elbow IK
+
+curve -name right_elbow_IK_Ctrl -d 1 -p -7.000425 0.40457 7.000425 -p 7.000425 0.40457 7.000425 -p 0 17.346485 0 -p -7.000425 0.40457 7.000425 -p -7.000425 0.40457 -7.000425 -p 0 17.346485 0 -p -7.000425 0.40457 -7.000425 -p 7.000425 0.40457 -7.000425 -p 0 17.346485 0 -p 7.000425 0.40457 -7.000425 -p 7.000425 0.40457 7.000425 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 ;
+setAttr "right_elbow_IK_Ctrl.rotateX" -90;
+FreezeTransformations;
+CenterPivot;
+
+spaceLocator -p 0 0 0;
+rename "locator1" "PV_right_elbow_IK_aim_loc";
+
+select -cl  ;
+select -r loc_right_hand ;
+select -tgl loc_right_shoulder ;
+select -tgl PV_right_elbow_IK_aim_loc  ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -cl  ;
+select -r loc_right_forearm ;
+select -tgl PV_right_elbow_IK_aim_loc ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -cl  ;
+select -r PV_right_elbow_IK_aim_loc_pointConstraint1 PV_right_elbow_IK_aim_loc_aimConstraint1 ;
+doDelete;
+
+select -cl  ;
+select -r PV_right_elbow_IK_aim_loc ;
+move -r -os -wd 0 0 35;
+
+select -r right_elbow_IK_Ctrl ;
+select -tgl PV_right_elbow_IK_aim_loc ;
+MatchTransform;
+
+setAttr "right_elbow_IK_Ctrl.overrideEnabled" 1;
+setAttr "right_elbow_IK_Ctrl.overrideColor" 28;
+
+select -cl  ;
+select -r right_elbow_IK_Ctrl ;
+python("import bake_to_opm");
+python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+//////// Right Wrist IK
+
+curve -name left_Wrist_IK_Ctrl -d 1 -p 0 0 -7 -p -2 0 -5 -p -1 0 -5 -p -1 0 -3 -p -3 0 -1 -p -5 0 -1 -p -5 0 -2 -p -7 0 0 -p -5 0 2 -p -5 0 1 -p -3 0 1 -p -1 0 3 -p -1 0 5 -p -2 0 5 -p 0 0 7 -p 2 0 5 -p 1 0 5 -p 1 0 3 -p 3 0 1 -p 5 0 1 -p 5 0 2 -p 7 0 0 -p 5 0 -2 -p 5 0 -1 -p 3 0 -1 -p 1 0 -3 -p 1 0 -5 -p 2 0 -5 -p 0 0 -7 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 -k 25 -k 26 -k 27 -k 28 ;
+
+select -r left_Wrist_IK_Ctrl ;
+select -tgl joint_left_hand ;
+MatchTransform;
+select -cl  ;
+select -r left_Wrist_IK_Ctrl ;
+rotate -r -os -fo 0 0 -90 ;
+
+
+select -r left_Wrist_IK_Ctrl ;
+scale -r 2 2 2 ;
+setAttr "left_Wrist_IK_Ctrl.overrideEnabled" 1;
+setAttr "left_Wrist_IK_Ctrl.overrideColor" 9;
+select -cl  ;
+select -r left_Wrist_IK_Ctrl ;
+python("import bake_to_opm");
+python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+//////// Right Shoulder IK
+
+curve -name left_elbow_IK_Ctrl -d 1 -p -7.000425 0.40457 7.000425 -p 7.000425 0.40457 7.000425 -p 0 17.346485 0 -p -7.000425 0.40457 7.000425 -p -7.000425 0.40457 -7.000425 -p 0 17.346485 0 -p -7.000425 0.40457 -7.000425 -p 7.000425 0.40457 -7.000425 -p 0 17.346485 0 -p 7.000425 0.40457 -7.000425 -p 7.000425 0.40457 7.000425 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 ;
+setAttr "left_elbow_IK_Ctrl.rotateX" 90;
+FreezeTransformations;
+CenterPivot;
+
+spaceLocator -p 0 0 0;
+rename "locator1" "PV_left_elbow_IK_aim_loc";
+
+select -cl  ;
+select -r loc_left_hand ;
+select -tgl loc_left_shoulder ;
+select -tgl PV_left_elbow_IK_aim_loc  ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -cl  ;
+select -r loc_left_forearm ;
+select -tgl PV_left_elbow_IK_aim_loc ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -cl  ;
+select -r PV_left_elbow_IK_aim_loc_pointConstraint1 PV_left_elbow_IK_aim_loc_aimConstraint1 ;
+doDelete;
+
+
+select -cl  ;
+select -r PV_left_elbow_IK_aim_loc ;
+move -r -os -wd 0 0 -35;
+
+
+select -r left_elbow_IK_Ctrl ;
+select -tgl PV_left_elbow_IK_aim_loc ;
+MatchTransform;
+
+
+setAttr "left_elbow_IK_Ctrl.overrideEnabled" 1;
+setAttr "left_elbow_IK_Ctrl.overrideColor" 9;
+
+select -cl  ;
+select -r left_elbow_IK_Ctrl ;
+python("import bake_to_opm");
+python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+
+
+//////// Right Ankle IK
+
+curve -name right_ankle_IK_Ctrl -d 1 -p 0 0 -7 -p -2 0 -5 -p -1 0 -5 -p -1 0 -3 -p -3 0 -1 -p -5 0 -1 -p -5 0 -2 -p -7 0 0 -p -5 0 2 -p -5 0 1 -p -3 0 1 -p -1 0 3 -p -1 0 5 -p -2 0 5 -p 0 0 7 -p 2 0 5 -p 1 0 5 -p 1 0 3 -p 3 0 1 -p 5 0 1 -p 5 0 2 -p 7 0 0 -p 5 0 -2 -p 5 0 -1 -p 3 0 -1 -p 1 0 -3 -p 1 0 -5 -p 2 0 -5 -p 0 0 -7 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 -k 25 -k 26 -k 27 -k 28 ;
+
+select -r right_ankle_IK_Ctrl ;
+select -tgl joint_right_foot_FK ;
+MatchTranslation;
+
+select -r right_ankle_IK_Ctrl ;
+scale -r 2.5 2.5 2.5 ;
+setAttr "right_ankle_IK_Ctrl.overrideEnabled" 1;
+setAttr "right_ankle_IK_Ctrl.overrideColor" 28;
+select -cl  ;
+select -r right_ankle_IK_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+//////// Right knee IK
+curve -name right_knee_IK_Ctrl -d 1 -p -7.000425 0.40457 7.000425 -p 7.000425 0.40457 7.000425 -p 0 17.346485 0 -p -7.000425 0.40457 7.000425 -p -7.000425 0.40457 -7.000425 -p 0 17.346485 0 -p -7.000425 0.40457 -7.000425 -p 7.000425 0.40457 -7.000425 -p 0 17.346485 0 -p 7.000425 0.40457 -7.000425 -p 7.000425 0.40457 7.000425 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 ;
+setAttr "right_knee_IK_Ctrl.rotateX" 90;
+FreezeTransformations;
+CenterPivot;
+
+spaceLocator -p 0 0 0;
+rename "locator1" "PV_right_leg_IK _aim_loc";
+
+select -cl  ;
+select -r loc_right_thig ;
+select -tgl loc_right_foot ;
+select -tgl PV_right_leg_IK__aim_loc  ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -cl  ;
+select -r loc_right_leg ;
+select -tgl PV_right_leg_IK__aim_loc ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -cl  ;
+select -r PV_right_leg_IK__aim_loc_pointConstraint1 PV_right_leg_IK__aim_loc_aimConstraint1 ;
+doDelete;
+
+select -cl  ;
+select -tgl PV_right_leg_IK__aim_loc ;
+move -r -os -wd 0 0 -35;
+
+select -r right_knee_IK_Ctrl ;
+select -tgl PV_right_leg_IK__aim_loc ;
+MatchTransform;
+
+
+setAttr "right_knee_IK_Ctrl.overrideEnabled" 1;
+setAttr "right_knee_IK_Ctrl.overrideColor" 28;
+select -cl  ;
+select -r right_knee_IK_Ctrl ;
+python("import bake_to_opm");
+python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+//////// Left Ankle IK
+
+curve -name left_ankle_IK_Ctrl -d 1 -p 0 0 -7 -p -2 0 -5 -p -1 0 -5 -p -1 0 -3 -p -3 0 -1 -p -5 0 -1 -p -5 0 -2 -p -7 0 0 -p -5 0 2 -p -5 0 1 -p -3 0 1 -p -1 0 3 -p -1 0 5 -p -2 0 5 -p 0 0 7 -p 2 0 5 -p 1 0 5 -p 1 0 3 -p 3 0 1 -p 5 0 1 -p 5 0 2 -p 7 0 0 -p 5 0 -2 -p 5 0 -1 -p 3 0 -1 -p 1 0 -3 -p 1 0 -5 -p 2 0 -5 -p 0 0 -7 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 -k 25 -k 26 -k 27 -k 28 ;
+
+select -r left_ankle_IK_Ctrl ;
+select -tgl joint_left_foot_FK ;
+MatchTranslation;
+
+select -r left_ankle_IK_Ctrl ;
+scale -r 2.5 2.5 2.5 ;
+setAttr "left_ankle_IK_Ctrl.overrideEnabled" 1;
+setAttr "left_ankle_IK_Ctrl.overrideColor" 9;
+select -cl  ;
+select -r left_ankle_IK_Ctrl ;
+FreezeTransformations;
+DeleteHistory;
+//////// Left knee IK
+
+curve -name left_knee_IK_Ctrl -d 1 -p -7.000425 0.40457 7.000425 -p 7.000425 0.40457 7.000425 -p 0 17.346485 0 -p -7.000425 0.40457 7.000425 -p -7.000425 0.40457 -7.000425 -p 0 17.346485 0 -p -7.000425 0.40457 -7.000425 -p 7.000425 0.40457 -7.000425 -p 0 17.346485 0 -p 7.000425 0.40457 -7.000425 -p 7.000425 0.40457 7.000425 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 ;
+
+setAttr "left_knee_IK_Ctrl.rotateX" 90;
+FreezeTransformations;
+CenterPivot;
+
+spaceLocator -p 0 0 0;
+rename "locator1" "PV_left_leg_IK _aim_loc";
+
+select -cl  ;
+select -r loc_left_thig ;
+select -tgl loc_left_foot ;
+select -tgl PV_left_leg_IK__aim_loc  ;
+pointConstraint -offset 0 0 0 -weight 1;
+
+select -cl  ;
+select -r loc_left_leg ;
+select -tgl PV_left_leg_IK__aim_loc ;
+aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0;
+
+select -cl  ;
+select -r PV_left_leg_IK__aim_loc_pointConstraint1 PV_left_leg_IK__aim_loc_aimConstraint1 ;
+doDelete;
+
+select -cl  ;
+select -tgl PV_left_leg_IK__aim_loc ;
+move -r -os -wd 0 0 -35;
+
+select -r left_knee_IK_Ctrl ;
+select -tgl PV_left_leg_IK__aim_loc ;
+MatchTransform;
+
+
+setAttr "left_knee_IK_Ctrl.overrideEnabled" 1;
+setAttr "left_knee_IK_Ctrl.overrideColor" 9;
+
+select -cl  ;
+select -r left_knee_IK_Ctrl ;
+python("import bake_to_opm");
+python("bake_to_opm.bake_transform_to_offset_parent_matrix_selection()");
+////////// IK FK SWITCH Controller
+CreatePolygonType;
+setAttr "type1.fontSize" 15;
+
+string $ikFkSwitch = "49 4b 20 3c 2d 3e 20 46 4b" ;// Hex code for ikFkSwitch
+setAttr "type1.textInput" -type "string" $ikFkSwitch ;
+select -cl  ;
+select -r typeMesh1 ;
+CenterPivot;
+select -r typeMesh1 ;
+convertTypeCapsToCurves;
+
+select -r typeMesh1 ;
+doDelete;
+select -cl  ;
+
+select -add polyToCurveShape7 ;
+select -add polyToCurveShape6 ;
+select -add polyToCurveShape5 ;
+select -add polyToCurveShape4 ;
+select -add polyToCurveShape3 ;
+select -add polyToCurveShape2 ;
+select -add polyToCurve1 ;
+parent -r -s ;
+select -cl  ;
+
+select -r polyToCurve2 polyToCurve3 polyToCurve4 polyToCurve5 polyToCurve6 polyToCurve7;
+doDelete;
+
+select -r polyToCurve1 ;
+parent -w;
+select -cl  ;
+
+select -r typeMesh1Curves1 ;
+doDelete;
+select -cl  ;
+rename "polyToCurve1" "ikFkSwitch_Ctrl";
+
+select -r ikFkSwitch_Ctrl ;
+CenterPivot;
+
+setAttr "ikFkSwitch_Ctrl.overrideEnabled" 1;
+setAttr "ikFkSwitch_Ctrl.overrideColor" 28;
+
+select -r ikFkSwitch_Ctrl ;
+select -tgl right_Wrist_IK_Ctrl ;
+MatchTranslation;
+select -cl  ;
+select -r ikFkSwitch_Ctrl ;
+move -r -os -wd 0 17.81384 0 ;
+move -r -os -wd 0 0 -27.446996 ;
+select -cl  ;
+select -r ikFkSwitch_Ctrl ;
+FreezeTransformations;
+select -cl  ;
+
+spaceLocator -p 0 0 0;
+rename "locator1" "left_arm_constraint_loc";
+spaceLocator -p 0 0 0;
+rename "locator1" "right_arm_constraint_loc";
+
+
+select -r left_arm_constraint_loc ;
+select -add left_Wrist_IK_Ctrl ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+select -r right_arm_constraint_loc ;
+select -add right_Wrist_IK_Ctrl ;
+MatchTranslation;
+FreezeTransformations;
+DeleteHistory;
+
+
+
+
+// Create a window with a button
+string $window = `window -title "Controller" -widthHeight 300 100`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Correct Controller position and shape";
+text -label "Then click continue ";
+text -label "";
+
+button -label "Continue to skinning" -command "deferredrCrea_Ctrl_1(); deleteUI $window;";
+
+// Show the window
+showWindow $window;
+
+// Function to execute the Symetrize leg locator and create spine to head locator
+global proc deferredrCrea_Ctrl_2() {
+
+		eval( "source \"11_Twist_Skinning\"" );
+
+}
+
+// Deferred function to be called when the button is pressed
+global proc deferredrCrea_Ctrl_1() {
+    // Execute the main code in the next idle event
+    evalDeferred("deferredrCrea_Ctrl_2");
+}

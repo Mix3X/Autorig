@@ -1,0 +1,153 @@
+
+// Function to calculate distance between two locators
+proc float getDistanceBetweenLocators(string $locator1, string $locator2) {
+    float $pos1[] = `xform -q -ws -t $locator1`;
+    float $pos2[] = `xform -q -ws -t $locator2`;
+
+    float $distance = sqrt(pow(($pos2[0] - $pos1[0]), 2) + pow(($pos2[1] - $pos1[1]), 2) + pow(($pos2[2] - $pos1[2]), 2));
+    
+    return $distance;
+}
+// calculate the distance beetwen top and base_loc
+string $locator1 = "loc_base"; // Replace with the actual name of your first locator
+string $locator2 = "loc_top"; // Replace with the actual name of your second locator
+
+float $distance = getDistanceBetweenLocators($locator1, $locator2);
+print("Distance between locators: " + $distance + "\n");
+
+
+// Create Locator at Hips
+
+float $distance_hips = $distance / 2;
+print ("Distance_hips= " + $distance_hips);
+
+
+spaceLocator -n loc_Hips -p 0 0 0;
+setAttr "loc_Hips.translateY" $distance_hips ;
+setAttr "loc_HipsShape.overrideEnabled" 1;
+setAttr "loc_HipsShape.overrideColor" 21;
+select -r loc_Hips ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator at left_thig
+
+float $distance_Y_left_thig = $distance / 1.9;
+float $distance_X_left_thig = $distance / 18;
+
+
+
+spaceLocator -n loc_left_thig -p 0 0 0;
+setAttr "loc_left_thig.translateY" $distance_Y_left_thig ;
+setAttr "loc_left_thig.translateX" $distance_X_left_thig ;
+setAttr "loc_left_thigShape.overrideEnabled" 1;
+setAttr "loc_left_thigShape.overrideColor" 21;
+select -r loc_left_thig ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator at left_leg
+
+float $distance_Y_left_leg = $distance / 3.6;
+float $distance_X_left_leg = $distance / 16.5;
+float $distance_Z_left_leg = $distance / -66.6;
+
+
+
+spaceLocator -n loc_left_leg -p 0 0 0;
+setAttr "loc_left_leg.translateY" $distance_Y_left_leg ;
+setAttr "loc_left_leg.translateX" $distance_X_left_leg ;
+setAttr "loc_left_leg.translateZ" $distance_Z_left_leg ;
+setAttr "loc_left_legShape.overrideEnabled" 1;
+setAttr "loc_left_legShape.overrideColor" 21;
+select -r loc_left_leg ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator at left_foot
+
+float $distance_Y_left_foot = $distance / 18.44;
+float $distance_X_left_foot = $distance / 14.17;
+float $distance_Z_left_foot = $distance / -22.5;
+
+
+
+spaceLocator -n loc_left_foot -p 0 0 0;
+setAttr "loc_left_foot.translateY" $distance_Y_left_foot ;
+setAttr "loc_left_foot.translateX" $distance_X_left_foot ;
+setAttr "loc_left_foot.translateZ" $distance_Z_left_foot ;
+setAttr "loc_left_footShape.overrideEnabled" 1;
+setAttr "loc_left_footShape.overrideColor" 21;
+select -r loc_left_foot ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator at left_toes
+
+float $distance_Y_left_toes = $distance / 103.8;
+float $distance_X_left_toes = $distance / 14.17;
+float $distance_Z_left_toes = $distance / 52.2;
+
+
+
+spaceLocator -n loc_left_toes -p 0 0 0;
+setAttr "loc_left_toes.translateY" $distance_Y_left_toes ;
+setAttr "loc_left_toes.translateX" $distance_X_left_toes ;
+setAttr "loc_left_toes.translateZ" $distance_Z_left_toes ;
+setAttr "loc_left_toesShape.overrideEnabled" 1;
+setAttr "loc_left_toesShape.overrideColor" 21;
+select -r loc_left_toes ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator at left_end
+
+float $distance_Y_left_end = $distance / 103.8;
+float $distance_X_left_end = $distance / 14.17;
+float $distance_Z_left_end = $distance / 17.25;
+
+
+
+spaceLocator -n loc_left_end -p 0 0 0;
+setAttr "loc_left_end.translateY" $distance_Y_left_end ;
+setAttr "loc_left_end.translateX" $distance_X_left_end ;
+setAttr "loc_left_end.translateZ" $distance_Z_left_end ;
+setAttr "loc_left_endShape.overrideEnabled" 1;
+setAttr "loc_left_endShape.overrideColor" 21;
+select -r loc_left_end ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+
+////////////////////////////////////////////
+//Right Leg & Spine
+///////////////////////////////////////////
+
+// Create a window with a button
+string $window = `window -title "Check Left Leg Locator" -widthHeight 300 100`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Check and adjust the locator position";
+text -label "Then click ok ";
+text -label "";
+
+button -label "Continue to Right Leg and spine" -command "deferredSymleftleg(); deleteUI $window;";
+
+// Show the window
+select -cl  ;   
+viewFit ;
+showWindow $window;
+
+// Function to execute the main code
+global proc Symleftleg() {
+		
+		eval( "source \"02_Sym_leg\"" );
+
+}
+
+// Deferred function to be called when the button is pressed
+global proc deferredSymleftleg() {
+    // Execute the main code in the next idle event
+    evalDeferred("Symleftleg");
+}

@@ -1,0 +1,282 @@
+////////////////////////////////////
+///// Verif Manuel des locator des jambes
+///////////////////////////////////
+
+//////////////////////////////////////////////////////
+///SYMMETRIZE LEFT LEG 
+//////////////////////////////////////////////////////
+
+// Symetrize Loc_left_thig
+select -cl  ;
+select -r loc_left_thig ;
+duplicate -rr;
+rename "loc_left_thig1" "loc_right_thig";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_thig";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize Loc_left_leg
+select -cl  ;
+select -r loc_left_leg ;
+duplicate -rr;
+rename "loc_left_leg1" "loc_right_leg";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_leg";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+// Symetrize Loc_left_Foot
+select -cl  ;
+select -r loc_left_foot ;
+duplicate -rr;
+rename "loc_left_foot1" "loc_right_foot";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_foot";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize Loc_left_toes
+select -cl  ;
+select -r loc_left_toes ;
+duplicate -rr;
+rename "loc_left_toes1" "loc_right_toes";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_toes";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+
+// Symetrize Loc_left_end
+select -cl  ;
+select -r loc_left_end ;
+duplicate -rr;
+rename "loc_left_end1" "loc_right_end";
+
+// Replace "locator1" with the actual name of the locator
+string $locator = "loc_right_end";
+
+// Get the current X position of the locator
+float $currentX = `getAttr ($locator + ".translateX")`;
+
+// Invert the X position
+float $invertedX = -$currentX;
+
+// Set the new X position to the locator
+setAttr ($locator + ".translateX") $invertedX;
+
+////////////////////////////
+
+// Create Locator Spine_1
+
+float $distance_Y_left_end = $distance / 1.7;
+
+
+spaceLocator -n loc_Spine_1 -p 0 0 0;
+setAttr "loc_Spine_1.translateY" $distance_Y_left_end ;
+setAttr "loc_Spine_1Shape.overrideEnabled" 1;
+setAttr "loc_Spine_1Shape.overrideColor" 21;
+select -r loc_Spine_1 ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator Spine_2
+
+float $distance_Y_left_end = $distance / 1.54;
+
+
+spaceLocator -n loc_Spine_2 -p 0 0 0;
+setAttr "loc_Spine_2.translateY" $distance_Y_left_end ;
+
+setAttr "loc_Spine_2Shape.overrideEnabled" 1;
+setAttr "loc_Spine_2Shape.overrideColor" 21;
+select -r loc_Spine_2 ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator Spine_3
+
+float $distance_Y_left_end = $distance / 1.38;
+
+
+spaceLocator -n loc_Spine_3 -p 0 0 0;
+setAttr "loc_Spine_3.translateY" $distance_Y_left_end ;
+
+setAttr "loc_Spine_3Shape.overrideEnabled" 1;
+setAttr "loc_Spine_3Shape.overrideColor" 21;
+select -r loc_Spine_3 ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator Spine_4
+
+float $distance_Y_left_end = $distance / 1.2;
+float $distance_Z_left_end = $distance / -46.15;
+
+spaceLocator -n loc_Spine_4 -p 0 0 0;
+setAttr "loc_Spine_4.translateY" $distance_Y_left_end ;
+setAttr "loc_Spine_4.translateZ" $distance_Z_left_end ;
+setAttr "loc_Spine_4Shape.overrideEnabled" 1;
+setAttr "loc_Spine_4Shape.overrideColor" 21;
+select -r loc_Spine_4 ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+
+// Create Locator Clavicule right
+float $distance_X_left_end = $distance / -55.197;
+float $distance_Y_left_end = $distance / 1.224;
+float $distance_Z_left_end = $distance / 124.602;
+
+spaceLocator -n loc_clavicle_right -p 0 0 0;
+setAttr "loc_clavicle_right.translateX" $distance_X_left_end ;
+setAttr "loc_clavicle_right.translateY" $distance_Y_left_end ;
+setAttr "loc_clavicle_right.translateZ" $distance_Z_left_end ;
+setAttr "loc_clavicle_rightShape.overrideEnabled" 1;
+setAttr "loc_clavicle_rightShape.overrideColor" 21;
+select -r loc_clavicle_right ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+
+// Create Locator Clavicule left
+float $distance_X_left_end = $distance / 55.197;
+float $distance_Y_left_end = $distance / 1.224;
+float $distance_Z_left_end = $distance / 124.602;
+
+spaceLocator -n loc_clavicle_left -p 0 0 0;
+setAttr "loc_clavicle_left.translateX" $distance_X_left_end ;
+setAttr "loc_clavicle_left.translateY" $distance_Y_left_end ;
+setAttr "loc_clavicle_left.translateZ" $distance_Z_left_end ;
+setAttr "loc_clavicle_leftShape.overrideEnabled" 1;
+setAttr "loc_clavicle_leftShape.overrideColor" 21;
+select -r loc_clavicle_left ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator Pec right
+float $distance_X_left_end = $distance / -16.912;
+float $distance_Y_left_end = $distance / 1.363;
+float $distance_Z_left_end = $distance / 12.961;
+
+spaceLocator -n loc_pec_right -p 0 0 0;
+setAttr "loc_pec_right.translateX" $distance_X_left_end ;
+setAttr "loc_pec_right.translateY" $distance_Y_left_end ;
+setAttr "loc_pec_right.translateZ" $distance_Z_left_end ;
+setAttr "loc_pec_rightShape.overrideEnabled" 1;
+setAttr "loc_pec_rightShape.overrideColor" 21;
+select -r loc_pec_right ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+
+// Create Locator pec left
+float $distance_X_left_end = $distance / 16.912;
+float $distance_Y_left_end = $distance / 1.363;
+float $distance_Z_left_end = $distance / 12.961;
+
+spaceLocator -n loc_pec_left -p 0 0 0;
+setAttr "loc_pec_left.translateX" $distance_X_left_end ;
+setAttr "loc_pec_left.translateY" $distance_Y_left_end ;
+setAttr "loc_pec_left.translateZ" $distance_Z_left_end ;
+setAttr "loc_pec_rightShape.overrideEnabled" 1;
+setAttr "loc_pec_leftShape.overrideColor" 21;
+select -r loc_pec_left ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+
+
+
+// Create Locator neck
+
+float $distance_Y_left_end = $distance / 1.13;
+float $distance_Z_left_end = $distance / 814.47;
+
+spaceLocator -n loc_neck -p 0 0 0;
+setAttr "loc_neck.translateY" $distance_Y_left_end ;
+setAttr "loc_neck.translateZ" $distance_Z_left_end ;
+setAttr "loc_neckShape.overrideEnabled" 1;
+setAttr "loc_neckShape.overrideColor" 21;
+select -r loc_neck ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+// Create Locator head
+
+float $distance_Y_left_end = $distance / 1.071;
+float $distance_Z_left_end = $distance / 106.13;
+
+spaceLocator -n loc_head -p 0 0 0;
+setAttr "loc_head.translateY" $distance_Y_left_end ;
+setAttr "loc_head.translateZ" $distance_Z_left_end ;
+setAttr "loc_headShape.overrideEnabled" 1;
+setAttr "loc_headShape.overrideColor" 21;
+select -r loc_head ;
+scale -r 10 10 10 ;
+select -cl  ;
+
+
+////////////////////////////////////////////
+//Left Arm
+///////////////////////////////////////////
+
+// Create a window with a button
+string $window = `window -title "Check spine Locator" -widthHeight 300 100`;
+
+columnLayout -adjustableColumn true;
+text -label "";
+text -label "Check and adjust the Locator position";
+text -label "Then click ok ";
+
+button -label "Continue to Left arm" -command "deferredLeft_arm(); deleteUI $window;";
+
+// Show the window
+showWindow $window;
+
+// Function to execute the Symetrize leg locator and create spine to head locator
+global proc Left_arm() {
+		
+		eval( "source \"03_Left_arm\"" );
+
+}
+
+// Deferred function to be called when the button is pressed
+global proc deferredLeft_arm() {
+    // Execute the main code in the next idle event
+    evalDeferred("Left_arm");
+}
